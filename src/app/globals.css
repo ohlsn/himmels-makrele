@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sky-light: #E0F2FE;
+  --color-sky: #38BDF8;
+  --color-sky-deep: #0369A1;
+  --color-ocean: #164E63;
+  --color-ocean-dark: #0C3547;
+  --color-fish-gold: #FBBF24;
+  --color-fish-orange: #FB923C;
+  --color-coral: #F472B6;
+  --color-cloud: #F8FAFC;
+  --font-heading: "Fredoka", "Nunito", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ocean);
+  background: var(--color-cloud);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Wavy section divider */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Swimming fish animation */
+@keyframes swim {
+  0% { transform: translateX(-100%) scaleX(1); }
+  49% { transform: translateX(calc(100vw + 100%)) scaleX(1); }
+  50% { transform: translateX(calc(100vw + 100%)) scaleX(-1); }
+  99% { transform: translateX(-100%) scaleX(-1); }
+  100% { transform: translateX(-100%) scaleX(1); }
+}
+
+.animate-swim {
+  animation: swim 20s linear infinite;
+}
+
+/* Cloud drift animation */
+@keyframes drift {
+  0% { transform: translateX(-10%); }
+  50% { transform: translateX(10%); }
+  100% { transform: translateX(-10%); }
+}
+
+.animate-drift {
+  animation: drift 15s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: drift 25s ease-in-out infinite;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
