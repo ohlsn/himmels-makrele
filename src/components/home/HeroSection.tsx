@@ -13,7 +13,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
         <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl font-bold text-ocean mb-4 drop-shadow-sm">
-          {SITE_NAME}
+          Sei so frei wie die Himmels Makrele
         </h1>
         <p className="font-heading text-xl sm:text-2xl text-sky-deep/80 mb-8">
           {SITE_TAGLINE}
