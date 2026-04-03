@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
+import PageTransition from "@/components/ui/PageTransition";
 import { BUSINESS_INFO, SOCIAL_LINKS } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
+    <PageTransition>
     <div className="py-16 px-4">
       <div className="max-w-2xl mx-auto">
         <SectionHeading>Kontakt</SectionHeading>
@@ -95,5 +97,6 @@ export default function KontaktPage() {
         </div>
       </div>
     </div>
+    </PageTransition>
   );
 }

@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Himmels Makrele
+
+Kunst vom Himmel, Geschichten aus dem Meer — Brand website for a young artist's print-on-demand business.
+
+## Tech Stack
+
+- **Framework**: Next.js (App Router, TypeScript)
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Commerce** (Phase 2): Shopify Storefront API
+- **Fulfillment**: Printify (connects to Shopify)
+- **Hosting**: Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill in your values:
 
-## Learn More
+```bash
+cp .env.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Required for Phase 2 (Shop)
+- `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` — your Shopify store domain
+- `NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN` — Storefront API access token
+- `SHOPIFY_REVALIDATION_SECRET` — webhook secret for on-demand ISR
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Optional
+- Formspree: Update the form action URL in `src/app/kontakt/page.tsx`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Pages (German routes)
+│   ├── page.tsx            # Startseite (homepage)
+│   ├── ueber-mich/         # Über mich
+│   ├── galerie/            # Galerie
+│   ├── kontakt/            # Kontakt
+│   ├── datenschutz/        # Datenschutz (privacy)
+│   └── impressum/          # Impressum (legal)
+├── components/
+│   ├── layout/             # Header, Footer, MobileNav, CookieBanner
+│   ├── home/               # Hero, AboutPreview, GalleryPreview, ShopPreview
+│   ├── gallery/            # ArtworkCard, ArtworkGrid
+│   └── ui/                 # Button, WaveDivider, FishAnimation, CloudAnimation
+├── lib/
+│   ├── constants.ts        # Site config, nav links, business info
+│   └── shopify/            # Shopify client & queries (Phase 2)
+content/
+├── about.ts                # About page content
+└── gallery.ts              # Gallery artwork data
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Business info**: Edit `src/lib/constants.ts` (KvK number, BTW-id, email, etc.)
+- **Artwork**: Replace placeholder data in `content/gallery.ts` and add images to `public/images/`
+- **Colors**: Edit the `@theme` block in `src/app/globals.css`
+
+## Deployment
+
+Connect this repo to [Vercel](https://vercel.com) for automatic deployments on push.
