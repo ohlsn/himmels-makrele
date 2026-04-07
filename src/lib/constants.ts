@@ -1,11 +1,12 @@
 export const SITE_NAME = "Himmels Makrele";
 export const SITE_TAGLINE = "Kunst vom Himmel, Geschichten aus dem Meer";
 export const SITE_DESCRIPTION =
-  "Himmels Makrele — Kunst, T-Shirts, Lunchboxen und mehr. Entworfen von einem 11-jährigen Künstler aus den Niederlanden.";
+  "Himmels Makrele — Kunst, Design und die Philosophie eines Fisches, der nach Höherem strebt. Schwimm nicht einfach nur mit.";
 
 export const NAV_LINKS = [
   { href: "/", label: "Startseite" },
-  { href: "/ueber-mich", label: "Über mich" },
+  { href: "/shop", label: "Shop" },
+  { href: "/ueber-mich", label: "Meine Geschichte" },
   { href: "/galerie", label: "Galerie" },
   { href: "/kontakt", label: "Kontakt" },
 ] as const;

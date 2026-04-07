@@ -21,7 +21,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button href="/galerie">Galerie entdecken</Button>
           <Button href="/ueber-mich" variant="secondary">
-            Über mich
+            Meine Geschichte
           </Button>
         </div>
       </div>

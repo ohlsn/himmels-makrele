@@ -17,8 +17,8 @@ export default function GaleriePage() {
         <div className="max-w-6xl mx-auto">
           <SectionHeading>Galerie</SectionHeading>
           <p className="text-center text-ocean/60 mb-10 max-w-xl mx-auto">
-            Hier findest du meine Kunstwerke. Klicke auf ein Bild, um es größer zu sehen.
-            Bald werden hier echte Bilder stehen!
+            Hier findest du meine Kunstwerke. Klicke auf ein Bild, um es größer
+            zu sehen — oder drücke das Herz ♥ um deine Favoriten zu sammeln!
           </p>
           <ArtworkGrid artworks={galleryData} />
         </div>

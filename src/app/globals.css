@@ -66,6 +66,19 @@ h1, h2, h3, h4, h5, h6 {
   animation: drift 25s ease-in-out infinite;
 }
 
+/* Heartbeat animation for favorite button */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.3); }
+  30% { transform: scale(0.95); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 0.5s ease-out;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

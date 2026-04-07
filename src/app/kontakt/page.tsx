@@ -15,7 +15,7 @@ export default function KontaktPage() {
       <div className="max-w-2xl mx-auto">
         <SectionHeading>Kontakt</SectionHeading>
         <p className="text-center text-ocean/60 mb-10">
-          Hast du eine Frage oder möchtest du Hallo sagen? Schreib mir gerne!
+          Egal ob geschäftliche Anfragen, tiefsinnige Gedanken oder einfach nur so — melde dich.
         </p>
 
         <form

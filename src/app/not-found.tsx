@@ -14,8 +14,8 @@ export default function NotFound() {
         <h1 className="font-heading text-8xl font-bold text-sky mb-4">404</h1>
         <h2 className="font-heading text-2xl text-ocean mb-2">Seite nicht gefunden</h2>
         <p className="text-ocean/60 mb-8 max-w-md">
-          Diese Seite scheint im Ozean verschwunden zu sein.
-          Vielleicht ist sie mit einer Makrele davongeschwommen?
+          Diese Seite existiert nicht. Wahrscheinlich hat die Strömung sie mitgenommen.
+          Oder sie hatte einfach keine Lust mehr auf den Mainstream.
         </p>
         <Button href="/">Zurück zur Startseite</Button>
       </div>
