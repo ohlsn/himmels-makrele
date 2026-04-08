@@ -25,6 +25,10 @@ Die Texte werden aus der Ich-Perspektive der "Himmels Makrele" geschrieben.
 - **Flow:** Die Seite präsentiert eigene Produktkarten unter `/shop`. Der "Kaufen"-Button ist ein externer Link (`printifyUrl`), der den Kunden zum kostenlosen Printify Pop-Up Store der Himmels Makrele leitet. Zahlung und Abwicklung laufen komplett über Printify.
 
 ## Anstehende Todos (Nächste Session)
-1. Echte Bilder anfügen (aktuell sind in `content/gallery.ts` und `content/shop.ts` Farb-Placeholder).
-2. Echten Printify Store von Oliver/Frederik aufsetzen und die Produkt-Links hinterlegen (`printifyUrl`).
-3. Impressum, Datenschutz und Kontaktformular (`Formspree-ID`) mit realen Geschäftsdaten bestücken.
+1. **Shop abschließen:** Bilder (Mockups) für die angelegten Printify-Produkte in `content/shop.ts` hinterlegen und weitere Produkte hinzufügen (z.B. Giraffenfand-Motiv).
+2. **Galerie-Bilder echte einfügen:** Die Farb-Placeholder in `content/gallery.ts` durch die finalen Kunstwerke ersetzen.
+3. **Rechtliches & Kontakt:** Impressum, Datenschutz und Kontaktformular (`Formspree-ID`) mit realen Geschäftsdaten bestücken.
+
+## Historie / Aktueller Stand
+- **Printify Store:** Ist verknüpft! Das erste Produkt ("Die Makrelen-Uniform") ist in `content/shop.ts` hinterlegt (Preis in Euro) und verlinkt direkt zum Pop-Up Store. CTA-Button wurde auf "Zum Shop" angepasst.
+- **Deployment:** Die Seite ist auf Vercel live und der Code ist gesichert. Große `.psd`-Dateien in `assets/` werden über `.vercelignore` und `.gitignore` vom Upload ausgeschlossen, um Limit-Fehler zu vermeiden.
