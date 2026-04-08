@@ -25,10 +25,15 @@ export default function ArtworkCard({
       >
         {/* Bild — sauber ohne Herz-Overlay */}
         <div
-          className="aspect-square relative"
-          style={{ background: artwork.placeholder }}
+          className="aspect-square relative flex items-center justify-center bg-gray-50 p-6 sm:p-8"
+          style={!artwork.imageUrl ? { background: artwork.placeholder } : undefined}
         >
-          <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/30 transition-all duration-300" />
+          {artwork.imageUrl ? (
+            <div className="relative w-full h-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border-[10px] border-white bg-white">
+              <img src={artwork.imageUrl} alt={artwork.title} className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          ) : null}
+          <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/10 transition-all duration-300 z-10" />
         </div>
 
         {/* Info-Bereich mit Herz-Button — immer sichtbar */}
@@ -60,9 +65,15 @@ export default function ArtworkCard({
           >
             {/* Lightbox-Bild — auch sauber ohne Overlay */}
             <div
-              className="aspect-square"
-              style={{ background: artwork.placeholder }}
-            />
+              className="aspect-square relative bg-white/10 flex items-center justify-center p-8 sm:p-12"
+              style={!artwork.imageUrl ? { background: artwork.placeholder } : undefined}
+            >
+              {artwork.imageUrl ? (
+                <div className="relative w-full h-full shadow-2xl border-[16px] border-white bg-white">
+                  <img src={artwork.imageUrl} alt={artwork.title} className="absolute inset-0 w-full h-full object-contain" />
+                </div>
+              ) : null}
+            </div>
             <div className="p-6">
               <div className="flex items-start justify-between gap-3 mb-2">
                 <h3 className="font-heading text-2xl font-bold text-ocean">

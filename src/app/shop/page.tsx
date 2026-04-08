@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
 import PageTransition from "@/components/ui/PageTransition";
-import ProductCard from "@/components/shop/ProductCard";
+import ShopGrid from "@/components/shop/ShopGrid";
 import { shopData } from "../../../content/shop";
 
 export const metadata: Metadata = {
@@ -22,16 +22,13 @@ export default function ShopPage() {
             </p>
           </div>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {shopData.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {/* Product Filter & Grid */}
+          <ShopGrid products={shopData} />
           
           <div className="mt-16 text-center max-w-xl mx-auto">
             <p className="text-sm text-ocean/50">
-              Der Verkauf, die Produktion und der Versand werden vollständig über unseren Partner Printify abgewickelt. Bei Fragen zu deiner Bestellung wende dich bitte an deren Support-Team während des Checkouts.
+              Der Himmels Makrele Shop wird als Pop-Up Store über Printify betrieben. 
+              Produktion, Versand und rechtliche Abwicklung erfolgen durch Printify und deren Partnerdruckereien.
             </p>
           </div>
         </div>

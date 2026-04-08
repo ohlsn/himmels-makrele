@@ -1,28 +1,28 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { galleryData } from "../../../content/gallery";
+import ArtworkCard from "@/components/gallery/ArtworkCard";
+import { useFavorites } from "@/hooks/useFavorites";
 
 export default function GalleryPreview() {
   const featured = galleryData.slice(0, 4);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   return (
     <section className="py-16 px-4 bg-sky-light/50">
       <div className="max-w-6xl mx-auto">
         <SectionHeading>Galerie</SectionHeading>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           {featured.map((artwork) => (
-            <div
+            <ArtworkCard
               key={artwork.id}
-              className="aspect-square rounded-2xl shadow-md overflow-hidden group cursor-pointer relative"
-              style={{ background: artwork.placeholder }}
-            >
-              <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/40 transition-all duration-300 flex items-end justify-center">
-                <span className="text-white font-heading font-semibold text-sm pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {artwork.title}
-                </span>
-              </div>
-            </div>
+              artwork={artwork}
+              isFavorite={isFavorite(artwork.id)}
+              onToggleFavorite={() => toggleFavorite(artwork.id)}
+            />
           ))}
         </div>
 

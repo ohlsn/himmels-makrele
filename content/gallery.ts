@@ -5,24 +5,27 @@ export interface Artwork {
   medium: string;
   year: number;
   placeholder: string; // CSS gradient as placeholder until real images are added
+  imageUrl?: string;
 }
 
 export const galleryData: Artwork[] = [
   {
     id: "1",
-    title: "Himmelsfisch",
-    description: "Eine Makrele, die zwischen den Wolken schwimmt",
-    medium: "Buntstift",
+    title: "Der schnelle Wolf",
+    description: "Scharfer Blick, dynamische und moderne Interpretation",
+    medium: "Digital",
     year: 2025,
     placeholder: "linear-gradient(135deg, #38BDF8, #0369A1)",
+    imageUrl: "/assets/gallery/Wolf.jpg",
   },
   {
     id: "2",
-    title: "Sonnenuntergang am Meer",
-    description: "Die Sonne taucht ins Wasser ein",
-    medium: "Wasserfarben",
+    title: "Der weise Giraffant",
+    description: "Eine surreale Fusion – enorm, sanft und erhaben",
+    medium: "Digital",
     year: 2025,
     placeholder: "linear-gradient(135deg, #FB923C, #F472B6)",
+    imageUrl: "/assets/gallery/Girrafant.jpg",
   },
   {
     id: "3",
