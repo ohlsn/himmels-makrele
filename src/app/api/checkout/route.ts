@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     
     // Bild des Produktes für die Kasse sammeln
     const colorData = product.colors.find(c => c.name === color);
-    const origin = req.headers.get("origin") || "https://himmels-makrele.de";
+    const origin = req.headers.get("origin") || "https://himmels-makrele.com";
     const imageUrl = colorData && colorData.images.length > 0 ? `${origin}${colorData.images[0]}` : undefined;
 
     // 1. Kasse öffnet sich (Checkout Session erstellen)
