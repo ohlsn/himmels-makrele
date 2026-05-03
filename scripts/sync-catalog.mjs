@@ -28,6 +28,17 @@ function getHex(name) {
   return hexMap[name] || "#cccccc";
 }
 
+// ASCII-safe Slug für Dateinamen (Umlaute weg, Leerzeichen → _)
+function asciiSlug(name) {
+  return name
+    .replace(/ß/g, 'ss')
+    .replace(/ä/g, 'ae').replace(/Ä/g, 'Ae')
+    .replace(/ö/g, 'oe').replace(/Ö/g, 'Oe')
+    .replace(/ü/g, 'ue').replace(/Ü/g, 'Ue')
+    .replace(/[^A-Za-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
 async function run() {
   console.log("Lese API-Keys aus .env.local...");
   const envContent = await fs.readFile('.env.local', 'utf-8');
@@ -157,7 +168,7 @@ async function run() {
       // Preview Files für diese Farbe
       for (const file of v.files) {
         if (file.type === "preview" && file.preview_url) {
-          const filename = `pf_mock_${p.id}_${cName.replace(/\\s+/g, '_')}_${file.id}.webp`;
+          const filename = `pf_mock_${p.id}_${asciiSlug(cName)}_${file.id}.webp`;
           const localUri = `/assets/shop/${filename}`;
 
           if (!colorsMap[cName].images.includes(localUri)) {

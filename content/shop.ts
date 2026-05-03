@@ -47,7 +47,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_428001712_Weiß_972470250.webp"
+          "/assets/shop/pf_mock_428001712_Weiss_972470250.webp"
         ]
       }
     ],
@@ -125,7 +125,7 @@ export const shopData: Product[] = [
         "name": "Königsblau",
         "hex": "#2563eb",
         "images": [
-          "/assets/shop/pf_mock_427646958_Königsblau_970606310.webp",
+          "/assets/shop/pf_mock_427646958_Koenigsblau_970606310.webp",
           "/assets/shop/prod-427646958-Royal-1776018499496-115.webp",
           "/assets/shop/prod-427646958-Royal-1776018499497-116.webp",
           "/assets/shop/prod-427646958-Royal-1776018499499-117.webp",
@@ -153,7 +153,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427646958_Weiß_970606315.webp",
+          "/assets/shop/pf_mock_427646958_Weiss_970606315.webp",
           "/assets/shop/prod-427646958-White-1776018499518-129.webp",
           "/assets/shop/prod-427646958-White-1776018499519-130.webp",
           "/assets/shop/prod-427646958-White-1776018499521-131.webp",
@@ -490,7 +490,7 @@ export const shopData: Product[] = [
         "name": "Königsblau",
         "hex": "#2563eb",
         "images": [
-          "/assets/shop/pf_mock_427646662_Königsblau_970604988.webp",
+          "/assets/shop/pf_mock_427646662_Koenigsblau_970604988.webp",
           "/assets/shop/prod-427646662-Royal-1776018499402-58.webp",
           "/assets/shop/prod-427646662-Royal-1776018499403-59.webp",
           "/assets/shop/prod-427646662-Royal-1776018499405-60.webp",
@@ -583,7 +583,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427646662_Weiß_970604991.webp",
+          "/assets/shop/pf_mock_427646662_Weiss_970604991.webp",
           "/assets/shop/prod-427646662-White-1776018499442-82.webp",
           "/assets/shop/prod-427646662-White-1776018499443-83.webp",
           "/assets/shop/prod-427646662-White-1776018499444-84.webp",
@@ -905,7 +905,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427646425_Weiß_970604329.webp",
+          "/assets/shop/pf_mock_427646425_Weiss_970604329.webp",
           "/assets/shop/prod-427646425-White-1776018499331-11.webp",
           "/assets/shop/prod-427646425-White-1776018499332-12.webp",
           "/assets/shop/prod-427646425-White-1776018499333-13.webp",
@@ -1037,7 +1037,7 @@ export const shopData: Product[] = [
         "name": "Königsblau",
         "hex": "#2563eb",
         "images": [
-          "/assets/shop/pf_mock_427645681_Königsblau_970601110.webp",
+          "/assets/shop/pf_mock_427645681_Koenigsblau_970601110.webp",
           "/assets/shop/prod-427645681-Royal-1776104041832-7.webp",
           "/assets/shop/prod-427645681-Royal-1776104041832-8.webp",
           "/assets/shop/prod-427645681-Royal-1776104041833-9.webp",
@@ -1051,7 +1051,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427645681_Weiß_970601111.webp",
+          "/assets/shop/pf_mock_427645681_Weiss_970601111.webp",
           "/assets/shop/prod-427645681-White-1776104041837-14.webp",
           "/assets/shop/prod-427645681-White-1776104041838-15.webp",
           "/assets/shop/prod-427645681-White-1776104041838-16.webp",
@@ -1182,7 +1182,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427645374_Weiß_970600346.webp",
+          "/assets/shop/pf_mock_427645374_Weiss_970600346.webp",
           "/assets/shop/prod-427645374-White-1776103503195-0.webp",
           "/assets/shop/prod-427645374-White-1776103503198-1.webp",
           "/assets/shop/prod-427645374-White-1776103503200-2.webp",
@@ -1324,7 +1324,7 @@ export const shopData: Product[] = [
         "name": "Königsblau",
         "hex": "#2563eb",
         "images": [
-          "/assets/shop/pf_mock_427644473_Königsblau_970597733.webp",
+          "/assets/shop/pf_mock_427644473_Koenigsblau_970597733.webp",
           "/assets/shop/prod-427644473-Royal-1776019015933-154.webp",
           "/assets/shop/prod-427644473-Royal-1776019015934-155.webp",
           "/assets/shop/prod-427644473-Royal-1776019015935-156.webp",
@@ -1345,7 +1345,7 @@ export const shopData: Product[] = [
         "name": "Carolina Blau",
         "hex": "#7badd8",
         "images": [
-          "/assets/shop/pf_mock_427644473_Carolina Blau_970597735.webp",
+          "/assets/shop/pf_mock_427644473_Carolina_Blau_970597735.webp",
           "/assets/shop/prod-427644473-Carolina_Blue-1776019015862-100.webp",
           "/assets/shop/prod-427644473-Carolina_Blue-1776019015862-98.webp",
           "/assets/shop/prod-427644473-Carolina_Blue-1776019015862-99.webp",
@@ -1408,7 +1408,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427644473_Weiß_970597738.webp",
+          "/assets/shop/pf_mock_427644473_Weiss_970597738.webp",
           "/assets/shop/prod-427644473-White-1776019015958-182.webp",
           "/assets/shop/prod-427644473-White-1776019015958-183.webp",
           "/assets/shop/prod-427644473-White-1776019015958-184.webp",
@@ -1770,7 +1770,7 @@ export const shopData: Product[] = [
         "name": "Weiß",
         "hex": "#FFFFFF",
         "images": [
-          "/assets/shop/pf_mock_427643733_Weiß_970593601.webp",
+          "/assets/shop/pf_mock_427643733_Weiss_970593601.webp",
           "/assets/shop/prod-427643733-White-1776104198038-0.webp",
           "/assets/shop/prod-427643733-White-1776104208636-1.webp",
           "/assets/shop/prod-427643733-White-1776104219198-2.webp",
