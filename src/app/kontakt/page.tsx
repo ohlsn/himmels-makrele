@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
 import PageTransition from "@/components/ui/PageTransition";
 import ContactForm from "@/components/forms/ContactForm";
-import { BUSINESS_INFO, SOCIAL_LINKS } from "@/lib/constants";
+import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -32,33 +32,6 @@ export default function KontaktPage() {
             >
               {BUSINESS_INFO.email}
             </a>
-
-            <div className="flex justify-center gap-6 mt-6">
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ocean/50 hover:text-sky-deep transition-colors"
-              >
-                Instagram
-              </a>
-              <a
-                href={SOCIAL_LINKS.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ocean/50 hover:text-sky-deep transition-colors"
-              >
-                TikTok
-              </a>
-              <a
-                href={SOCIAL_LINKS.pinterest}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ocean/50 hover:text-sky-deep transition-colors"
-              >
-                Pinterest
-              </a>
-            </div>
           </div>
         </div>
       </div>

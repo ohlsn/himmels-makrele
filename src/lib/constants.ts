@@ -11,12 +11,6 @@ export const NAV_LINKS = [
   { href: "/kontakt", label: "Kontakt" },
 ] as const;
 
-export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/himmelsmakrele",
-  tiktok: "https://tiktok.com/@himmelsmakrele",
-  pinterest: "https://pinterest.com/himmelsmakrele",
-} as const;
-
 export const BUSINESS_INFO = {
   name: "Himmels Makrele",
   legalForm: "Eenmanszaak (ZZP)",

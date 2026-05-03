@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SITE_NAME, NAV_LINKS, SOCIAL_LINKS, BUSINESS_INFO } from "@/lib/constants";
+import { SITE_NAME, NAV_LINKS, BUSINESS_INFO } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -37,10 +37,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact & Social */}
+          {/* Contact */}
           <div>
             <h4 className="font-heading text-lg font-semibold text-white mb-3">
-              Kontakt & Social
+              Kontakt
             </h4>
             <ul className="space-y-2 text-sm text-white/70">
               <li>
@@ -49,36 +49,6 @@ export default function Footer() {
                   className="hover:text-fish-gold transition-colors"
                 >
                   {BUSINESS_INFO.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-fish-gold transition-colors"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-fish-gold transition-colors"
-                >
-                  TikTok
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.pinterest}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-fish-gold transition-colors"
-                >
-                  Pinterest
                 </a>
               </li>
             </ul>
