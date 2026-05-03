@@ -31,9 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const selectedVariant = product.variants?.find(v => v.size === selectedSize && v.color === selectedColor?.name);
   const displayPrice = selectedVariant?.price || product.price;
 
-  const currentImages = selectedColor && selectedColor.images && selectedColor.images.length > 0 
-    ? selectedColor.images 
-    : (product as any).images || []; // grace fallback
+  const currentImages: string[] = selectedColor?.images ?? [];
   
   const hasImages = currentImages.length > 0;
 
@@ -293,7 +291,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   )}
                 </>
               ) : (
-                <div className="w-full aspect-square flex items-center justify-center" style={{ background: product.placeholderImage }}>
+                <div className="w-full aspect-square flex items-center justify-center bg-gray-100">
                   <span className="text-gray-400 font-heading text-lg font-medium">Foto kommt bald</span>
                 </div>
               )}
