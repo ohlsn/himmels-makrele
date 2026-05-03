@@ -19,9 +19,18 @@ export const SOCIAL_LINKS = {
 
 export const BUSINESS_INFO = {
   name: "Himmels Makrele",
-  owner: "[Dein Name]",
-  kvkNumber: "[KvK-Nummer]",
-  btwNumber: "[BTW-id]",
-  email: "hallo@himmelsmakrele.nl",
-  city: "Nederland",
+  legalForm: "Eenmanszaak (ZZP)",
+  owner: "Oliver Koetting",
+  street: "Kerklaan Zunderdorp 36",
+  postalCode: "1027 AP",
+  city: "Amsterdam",
+  country: "Niederlande",
+  kvkNumber: "84452307",
+  btwNumber: "NL003966183B38",
+  email: "hallo@himmels-makrele.com",
+  phone: "+31 6 4338 7296",
 } as const;
+
+export const FORMSPREE_FORM_ID = "xpqbqvyo";
+
+export const ODR_PLATFORM_URL = "https://ec.europa.eu/consumers/odr/";
