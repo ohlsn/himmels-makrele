@@ -2,19 +2,102 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { shopData } from "../../../../content/shop";
 
-// Die Kasse initialisieren
-// Wenn noch kein Key da ist, nutzen wir einen Platzhalter, damit der Server nicht abstürzt
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123", {
   apiVersion: "2026-03-25.dahlia",
 });
 
+const FALLBACK_SHIPPING_CENTS = 499; // €4.99 falls Printful API mal nicht antwortet
+
+type ShippingAddress = {
+  name: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  country: "DE" | "NL";
+};
+
+async function getPrintfulShippingRate(
+  syncVariantId: number,
+  address: ShippingAddress,
+): Promise<{ amountCents: number; label: string; minDays?: number; maxDays?: number } | null> {
+  const apiKey = process.env.PRINTFUL_API_KEY;
+  if (!apiKey) {
+    console.warn("PRINTFUL_API_KEY fehlt — Fallback-Versand wird genutzt.");
+    return null;
+  }
+
+  try {
+    const response = await fetch("https://api.printful.com/shipping/rates", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        recipient: {
+          address1: address.street,
+          city: address.city,
+          country_code: address.country,
+          zip: address.postalCode,
+        },
+        items: [{ sync_variant_id: syncVariantId, quantity: 1 }],
+        currency: "EUR",
+        locale: "en_US",
+      }),
+    });
+
+    if (!response.ok) {
+      console.warn("Printful shipping rates API non-OK:", response.status);
+      return null;
+    }
+
+    const data = await response.json();
+    const first = Array.isArray(data?.result) && data.result.length > 0 ? data.result[0] : null;
+    if (!first) return null;
+
+    const rateNum = parseFloat(first.rate);
+    if (!Number.isFinite(rateNum)) return null;
+
+    return {
+      amountCents: Math.round(rateNum * 100),
+      label: first.name || "Standardversand",
+      minDays: first.minDeliveryDays,
+      maxDays: first.maxDeliveryDays,
+    };
+  } catch (err) {
+    console.warn("Printful shipping rates request failed:", err);
+    return null;
+  }
+}
+
 export async function POST(req: Request) {
   try {
-    // Der Kunde klickt auf ein Produkt und sagt der Kasse, was er kaufen möchte
-    const { productId, color, size, printfulSyncVariantId } = await req.json();
+    const {
+      productId,
+      color,
+      size,
+      printfulSyncVariantId,
+      shippingAddress,
+    }: {
+      productId?: string;
+      color?: string;
+      size?: string;
+      printfulSyncVariantId?: number;
+      shippingAddress?: ShippingAddress;
+    } = await req.json();
 
     if (!productId || !color || !size) {
-      return NextResponse.json({ error: "Fehlende Produktdetails für den Checkout." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Fehlende Produktdetails für den Checkout." },
+        { status: 400 },
+      );
+    }
+
+    if (!shippingAddress) {
+      return NextResponse.json(
+        { error: "Versandadresse fehlt." },
+        { status: 400 },
+      );
     }
 
     const product = shopData.find((p) => p.id === productId);
@@ -22,19 +105,41 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Produkt nicht gefunden." }, { status: 404 });
     }
 
-    // Preis der exakten Variante auslesen, Fallback auf Standardpreis
-    const variantRaw = product.variants?.find(v => v.size === size && v.color === color);
-    const unitAmount = variantRaw?.numericPrice || parseInt(product.price.replace(/[^0-9]/g, ""));
+    const variantRaw = product.variants?.find(
+      (v) => v.size === size && v.color === color,
+    );
+    const unitAmount =
+      variantRaw?.numericPrice || parseInt(product.price.replace(/[^0-9]/g, ""));
     const variantName = `${product.name} - ${color} (Größe ${size})`;
-    
-    // Bild des Produktes für die Kasse sammeln
-    const colorData = product.colors.find(c => c.name === color);
-    const origin = req.headers.get("origin") || "https://himmels-makrele.com";
-    const imageUrl = colorData && colorData.images.length > 0 ? `${origin}${colorData.images[0]}` : undefined;
 
-    // 1. Kasse öffnet sich (Checkout Session erstellen)
+    const colorData = product.colors.find((c) => c.name === color);
+    const origin = req.headers.get("origin") || "https://himmels-makrele.com";
+    const imageUrl =
+      colorData && colorData.images.length > 0
+        ? `${origin}${colorData.images[0]}`
+        : undefined;
+
+    // Echte Versandrate von Printful holen, mit Fallback
+    let shippingCents = FALLBACK_SHIPPING_CENTS;
+    let shippingLabel = "Standardversand";
+    let shippingMinDays: number | undefined = 5;
+    let shippingMaxDays: number | undefined = 10;
+
+    if (printfulSyncVariantId) {
+      const rate = await getPrintfulShippingRate(
+        printfulSyncVariantId,
+        shippingAddress,
+      );
+      if (rate) {
+        shippingCents = rate.amountCents;
+        shippingLabel = rate.label;
+        shippingMinDays = rate.minDays;
+        shippingMaxDays = rate.maxDays;
+      }
+    }
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "ideal", "klarna"], // Kartenzahlung, iDEAL & Klarna
+      payment_method_types: ["card", "ideal", "klarna"],
       line_items: [
         {
           price_data: {
@@ -49,45 +154,49 @@ export async function POST(req: Request) {
         },
       ],
       mode: "payment",
-      // Wenn bezahlt: Auf die Danke-Seite mit Session-ID, damit wir die Bestellung anzeigen können
       success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
-      // Wenn abgebrochen: Geht zurück in den Shop
       cancel_url: `${origin}/shop?canceled=true`,
-      
-      // Das ist wichtig: Wir fragen die echte Adresse des Kunden ab!
-      shipping_address_collection: {
-        allowed_countries: ["DE", "NL"], // Nur Deutschland & Niederlande erlaubt
-      },
 
-      // Versand-Optionen: Pauschale, die der Kunde im Checkout sieht und mitzahlt.
-      // Wert deckt Printful EU-Versand für DE+NL (typisch €3.99–€5.99).
-      // TODO: später auf Live-Quote via Printful-API umstellen, falls Versandkosten variieren.
+      // Versandkosten von Printful (oder Fallback) — Kunde sieht's vor dem Bezahlen
       shipping_options: [
         {
           shipping_rate_data: {
             type: "fixed_amount",
-            fixed_amount: { amount: 499, currency: "eur" },
-            display_name: "Standardversand",
-            delivery_estimate: {
-              minimum: { unit: "business_day", value: 5 },
-              maximum: { unit: "business_day", value: 10 },
-            },
+            fixed_amount: { amount: shippingCents, currency: "eur" },
+            display_name: shippingLabel,
+            ...(shippingMinDays && shippingMaxDays
+              ? {
+                  delivery_estimate: {
+                    minimum: { unit: "business_day", value: shippingMinDays },
+                    maximum: { unit: "business_day", value: shippingMaxDays },
+                  },
+                }
+              : {}),
           },
         },
       ],
 
-      // METADATEN (Das sind unsere unsichtbaren Klebezettel)
-      // Wir kleben einen Zettel an den Einkaufswagen, auf dem für das Lager
-      // die genaue Produkt-Nummer der Fabrik steht.
+      // Adresse haben wir schon — Stripe nicht nochmal fragen lassen
+      // Hinweis: Stripe sammelt für Kartenzahlungen weiterhin Rechnungsadresse
+      // (das ist ein anderes Feld als Versandadresse)
+
+      // Alle Bestelldaten in Metadata, damit der Webhook autoritativ daraus lesen kann
       metadata: {
-        printfulSyncVariantId: printfulSyncVariantId ? printfulSyncVariantId.toString() : "",
+        printfulSyncVariantId: printfulSyncVariantId
+          ? printfulSyncVariantId.toString()
+          : "",
+        ship_name: shippingAddress.name,
+        ship_street: shippingAddress.street,
+        ship_postal_code: shippingAddress.postalCode,
+        ship_city: shippingAddress.city,
+        ship_country: shippingAddress.country,
       },
     });
 
-    // Wir schicken den Kunden zur URL der Stripe-Kasse
     return NextResponse.json({ url: session.url });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unbekannter Fehler";
     console.error("Stripe Checkout Error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

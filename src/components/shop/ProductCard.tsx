@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import type { Product, ProductColor, ProductVariant } from "../../../content/shop";
+import ShippingAddressModal, { type ShippingAddress } from "./ShippingAddressModal";
 
 interface ProductCardProps {
   product: Product;
@@ -27,6 +28,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const [loading, setLoading] = useState(false);
+  const [addressModalOpen, setAddressModalOpen] = useState(false);
 
   const selectedVariant = product.variants?.find(v => v.size === selectedSize && v.color === selectedColor?.name);
   const displayPrice = selectedVariant?.price || product.price;
@@ -45,9 +47,9 @@ export default function ProductCard({ product }: ProductCardProps) {
     setCurrentImageIndex((prev) => (prev === 0 ? currentImages.length - 1 : prev - 1));
   };
 
-  const handleCheckout = async (e?: React.MouseEvent) => {
+  const handleCheckout = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    
+
     if (product.sizes?.length > 0 && !selectedSize) {
       alert("Bitte wähle zuerst eine Größe aus.");
       return;
@@ -57,19 +59,25 @@ export default function ProductCard({ product }: ProductCardProps) {
       alert("Dieses Produkt ist noch nicht final konfiguriert (Fehlende stripePriceId).");
       return;
     }
-    
-    // Finde exakte Variante
-    let variantId: number | undefined = undefined;
+
     if (product.variants && selectedColor && selectedSize) {
-      const match = product.variants.find(v => v.color === selectedColor.name && v.size === selectedSize);
-      if (match) {
-        variantId = match.printfulSyncVariantId;
-      } else {
+      const match = product.variants.find(
+        (v) => v.color === selectedColor.name && v.size === selectedSize,
+      );
+      if (!match) {
         alert("Oh nein! Diese Farb-Größen-Kombination scheint es nicht mehr zu geben.");
         return;
       }
     }
-    
+
+    setAddressModalOpen(true);
+  };
+
+  const handleAddressSubmit = async (address: ShippingAddress) => {
+    const variantId = product.variants?.find(
+      (v) => v.color === selectedColor?.name && v.size === selectedSize,
+    )?.printfulSyncVariantId;
+
     setLoading(true);
     try {
       const response = await fetch("/api/checkout", {
@@ -80,19 +88,22 @@ export default function ProductCard({ product }: ProductCardProps) {
           color: selectedColor?.name,
           size: selectedSize,
           printfulSyncVariantId: variantId,
+          shippingAddress: address,
         }),
       });
-      
+
       const data = await response.json();
       if (data.url) {
-        window.location.href = data.url; 
+        window.location.href = data.url;
       } else {
-        alert("Fehler beim Öffnen der Kasse: " + data.error);
+        alert("Fehler beim Öffnen der Kasse: " + (data.error ?? "Unbekannt"));
         setLoading(false);
+        setAddressModalOpen(false);
       }
-    } catch (err) {
+    } catch {
       alert("Netzwerkfehler beim Verbinden mit der Kasse.");
       setLoading(false);
+      setAddressModalOpen(false);
     }
   };
 
@@ -400,6 +411,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
       )}
+
+      <ShippingAddressModal
+        open={addressModalOpen}
+        onClose={() => !loading && setAddressModalOpen(false)}
+        onSubmit={handleAddressSubmit}
+        productSummary={`${product.name}${selectedColor ? `, ${selectedColor.name}` : ""}${selectedSize ? `, Größe ${selectedSize}` : ""}`}
+        submitting={loading}
+      />
     </>
   );
 }

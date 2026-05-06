@@ -23,9 +23,9 @@ export default function ImpressumPage() {
               Angaben gemäß § 5 DDG (vormals TMG) und Art. 14 ODR-VO
             </h3>
             <p>
-              {BUSINESS_INFO.name}
+              {BUSINESS_INFO.legalEntity} ({BUSINESS_INFO.legalForm})
               <br />
-              {BUSINESS_INFO.legalForm}
+              handelnd unter dem Namen: {BUSINESS_INFO.name}
               <br />
               {BUSINESS_INFO.street}
               <br />

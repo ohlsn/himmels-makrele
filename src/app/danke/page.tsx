@@ -100,13 +100,23 @@ export default async function DankePage({
     );
   }
 
-  const customerName = session.customer_details?.name ?? "";
+  const meta = session.metadata ?? {};
   const customerEmail = session.customer_details?.email ?? "";
-  const address = session.customer_details?.address;
+  // Versandadresse aus Metadata (autoritativ), Fallback auf Stripe customer_details
+  const customerName =
+    meta.ship_name || session.customer_details?.name || "";
+  const shipAddress = {
+    line1: meta.ship_street || session.customer_details?.address?.line1 || "",
+    city: meta.ship_city || session.customer_details?.address?.city || "",
+    postal_code:
+      meta.ship_postal_code ||
+      session.customer_details?.address?.postal_code ||
+      "",
+    country: meta.ship_country || session.customer_details?.address?.country || "",
+  };
+  const address = shipAddress.line1 ? shipAddress : null;
 
-  const variantInfo = lookupVariant(
-    session.metadata?.printfulSyncVariantId ?? null,
-  );
+  const variantInfo = lookupVariant(meta.printfulSyncVariantId ?? null);
   const lineItem = session.line_items?.data[0];
   const productLabel =
     variantInfo?.productName ?? lineItem?.description ?? "Dein Produkt";
@@ -163,7 +173,6 @@ export default async function DankePage({
                   {customerName}
                   <br />
                   {address.line1}
-                  {address.line2 ? `, ${address.line2}` : ""}
                   <br />
                   {address.postal_code} {address.city}
                   <br />

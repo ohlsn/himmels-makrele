@@ -28,16 +28,29 @@ export async function POST(req: Request) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
-    // Wir holen uns die Adresse des Kunden und unseren "Klebezettel" (die Produkt-ID)
-    const customerName = session.customer_details?.name;
     const email = session.customer_details?.email;
-    const address = session.customer_details?.address;
-    
-    // Klebezettel lesen:
-    const printfulSyncVariantId = session.metadata?.printfulSyncVariantId;
+    const meta = session.metadata ?? {};
+    const printfulSyncVariantId = meta.printfulSyncVariantId;
 
-    if (!printfulSyncVariantId || !address) {
-      console.error("Es fehlen wichtige Daten für Printful (Adresse oder Produkt-ID)!");
+    // Versandadresse: Single Source of Truth ist die Metadata, die wir bei
+    // Session-Erstellung selbst eingebettet haben. Fallback auf Stripe's
+    // customer_details, falls jemand mit altem Code-Pfad ankommt.
+    const customerName = meta.ship_name || session.customer_details?.name || "";
+    const street =
+      meta.ship_street || session.customer_details?.address?.line1 || "";
+    const city = meta.ship_city || session.customer_details?.address?.city || "";
+    const postalCode =
+      meta.ship_postal_code ||
+      session.customer_details?.address?.postal_code ||
+      "";
+    const country =
+      meta.ship_country || session.customer_details?.address?.country || "";
+
+    if (!printfulSyncVariantId || !street || !city || !postalCode || !country) {
+      console.error(
+        "Es fehlen wichtige Daten für Printful (Adresse oder Produkt-ID)!",
+        { printfulSyncVariantId, street, city, postalCode, country },
+      );
       return NextResponse.json({ error: "Fehlende Daten" }, { status: 400 });
     }
 
@@ -47,23 +60,21 @@ export async function POST(req: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.PRINTFUL_API_KEY}`,
+          Authorization: `Bearer ${process.env.PRINTFUL_API_KEY}`,
         },
         body: JSON.stringify({
           recipient: {
             name: customerName,
-            address1: address.line1,
-            address2: address.line2 || "",
-            city: address.city,
-            state_code: address.state, // Wird in manchen Ländern benötigt
-            country_code: address.country, // z.B. 'DE' oder 'NL'
-            zip: address.postal_code,
-            email: email,
+            address1: street,
+            city,
+            country_code: country,
+            zip: postalCode,
+            email,
           },
           items: [
             {
               sync_variant_id: parseInt(printfulSyncVariantId, 10),
-              quantity: 1, // Wir bestellen immer 1 Stück pro Runde
+              quantity: 1,
             },
           ],
         }),

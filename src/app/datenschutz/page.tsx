@@ -19,7 +19,8 @@ export default function DatenschutzPage() {
               1. Verantwortliche Stelle
             </h3>
             <p>
-              {BUSINESS_INFO.name} ({BUSINESS_INFO.legalForm})
+              {BUSINESS_INFO.legalEntity} ({BUSINESS_INFO.legalForm}), handelnd
+              unter dem Namen {BUSINESS_INFO.name}
               <br />
               {BUSINESS_INFO.owner}
               <br />

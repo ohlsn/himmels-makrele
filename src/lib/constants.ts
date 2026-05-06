@@ -12,7 +12,8 @@ export const NAV_LINKS = [
 ] as const;
 
 export const BUSINESS_INFO = {
-  name: "Himmels Makrele",
+  name: "Himmels Makrele", // Brand / Handelsnaam
+  legalEntity: "OHLSN", // Registrierte Eenmanszaak beim KvK
   legalForm: "Eenmanszaak (ZZP)",
   owner: "Oliver Koetting",
   street: "Kerklaan Zunderdorp 36",
