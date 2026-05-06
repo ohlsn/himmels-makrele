@@ -49,10 +49,10 @@ export async function POST(req: Request) {
         },
       ],
       mode: "payment",
-      // Wenn bezahlt: Geht zurück in euren Shop (mit ?success in der URL)
-      success_url: `${req.headers.get("origin")}/shop?success=true`,
-      // Wenn abgebrochen: Geht zurück in euren Shop (ohne Kauf)
-      cancel_url: `${req.headers.get("origin")}/shop?canceled=true`,
+      // Wenn bezahlt: Auf die Danke-Seite mit Session-ID, damit wir die Bestellung anzeigen können
+      success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
+      // Wenn abgebrochen: Geht zurück in den Shop
+      cancel_url: `${origin}/shop?canceled=true`,
       
       // Das ist wichtig: Wir fragen die echte Adresse des Kunden ab!
       shipping_address_collection: {
