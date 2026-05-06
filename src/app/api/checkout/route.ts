@@ -59,6 +59,23 @@ export async function POST(req: Request) {
         allowed_countries: ["DE", "NL"], // Nur Deutschland & Niederlande erlaubt
       },
 
+      // Versand-Optionen: Pauschale, die der Kunde im Checkout sieht und mitzahlt.
+      // Wert deckt Printful EU-Versand für DE+NL (typisch €3.99–€5.99).
+      // TODO: später auf Live-Quote via Printful-API umstellen, falls Versandkosten variieren.
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: 499, currency: "eur" },
+            display_name: "Standardversand",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 5 },
+              maximum: { unit: "business_day", value: 10 },
+            },
+          },
+        },
+      ],
+
       // METADATEN (Das sind unsere unsichtbaren Klebezettel)
       // Wir kleben einen Zettel an den Einkaufswagen, auf dem für das Lager
       // die genaue Produkt-Nummer der Fabrik steht.
