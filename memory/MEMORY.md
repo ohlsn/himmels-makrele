@@ -24,7 +24,9 @@ Memory types (use as filename prefixes for consistency):
 
 ## Feedback
 
-<!-- e.g. - [No fabrication](feedback_no_fabrication.md) — Never invent facts; say "I don't know" instead -->
+- [Honesty over Comfort](feedback_honesty.md) — Tell uncomfortable truths, call out own slips, don't oversell or dismiss
+- [Larry-Orchestrator workflow is mandatory](feedback_larry_orchestration.md) — Always delegate non-trivial work via Agent tool to .claude/agents/ specialists
+- [Always git fetch before touching code](feedback_git_sync.md) — Session start + before push/deploy: fetch + check drift. Hooks enforce.
 
 ## Project
 
