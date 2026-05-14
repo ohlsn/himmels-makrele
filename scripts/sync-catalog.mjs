@@ -5,6 +5,7 @@ import { execSync } from 'child_process';
 import readline from 'readline/promises';
 import Stripe from 'stripe';
 import sharp from 'sharp';
+import { loadPricing } from './_lib_pricing.mjs';
 
 const IMG_MAX_DIM = 1600;
 const IMG_QUALITY = 80;
@@ -40,6 +41,10 @@ function asciiSlug(name) {
 }
 
 async function run() {
+  console.log("Lese Pricing-Override aus content/pricing.ts...");
+  const pricingOverride = await loadPricing();
+  console.log(`  → ${Object.keys(pricingOverride).length} Produkt-Preise definiert`);
+
   console.log("Lese API-Keys aus .env.local...");
   const envContent = await fs.readFile('.env.local', 'utf-8');
   const env = {};
@@ -154,6 +159,16 @@ async function run() {
     const imagesToDownload = [];
     let basePriceStr = "29.90";
 
+    // Pricing-Override: in content/pricing.ts definierte Preise schlagen Printful's retail_price
+    const productSlugId = `prod-${p.id}`;
+    const overrideCents = pricingOverride[productSlugId];
+    if (overrideCents) {
+      basePriceStr = (overrideCents / 100).toFixed(2);
+      console.log(` - Pricing-Override aktiv: € ${basePriceStr.replace('.', ',')}`);
+    } else {
+      console.log(` ⚠️  Kein Pricing-Override für ${productSlugId} — verwende Printful retail_price`);
+    }
+
     // Varianten auflösen
     for (const v of varData.result.sync_variants) {
       const sizeStr = v.size || "Einheitsgröße";
@@ -178,8 +193,12 @@ async function run() {
         }
       }
 
-      const vPriceStr = v.retail_price || "29.90";
-      if (variants.length === 0) basePriceStr = vPriceStr;
+      // Variant-Preis: bei Override aus pricing.ts → alle Variants kriegen den Brutto-Preis
+      // (keine Größen-Aufschläge im aktuellen Modell)
+      const vPriceStr = overrideCents
+        ? (overrideCents / 100).toFixed(2)
+        : (v.retail_price || "29.90");
+      if (variants.length === 0 && !overrideCents) basePriceStr = vPriceStr;
       const vPriceNum = Math.round(parseFloat(vPriceStr) * 100);
       const isOutOfStock = catalogInOutStock[v.product?.variant_id] === true;
 
