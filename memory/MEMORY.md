@@ -24,10 +24,6 @@ Memory types (use as filename prefixes for consistency):
 
 ## Feedback
 
-- [Honesty over Comfort](feedback_honesty.md) — Tell uncomfortable truths, call out own slips, don't oversell or dismiss
-- [Orchestrator + Specialists workflow is mandatory](feedback_orchestration.md) — Delegate non-trivial work via Agent tool; orchestrator rules live in ~/.claude/CLAUDE.md
-- [Always git fetch before touching code](feedback_git_sync.md) — Session start + before push/deploy: fetch + check drift. Hooks enforce.
-
 ## Project
 
 <!-- e.g. - [Current status](project_status.md) — what's in flight, blockers, deadlines -->
