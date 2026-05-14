@@ -147,13 +147,16 @@ export async function POST(req: Request) {
             product_data: {
               name: variantName,
               images: imageUrl ? [imageUrl] : [],
+              tax_code: "txcd_99999999", // General — Tangible Goods (Stripe Tax)
             },
             unit_amount: unitAmount,
+            tax_behavior: "inclusive", // Brutto-Preis: BTW ist im Preis enthalten
           },
           quantity: 1,
         },
       ],
       mode: "payment",
+      automatic_tax: { enabled: true },
       success_url: `${origin}/danke?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop?canceled=true`,
 
