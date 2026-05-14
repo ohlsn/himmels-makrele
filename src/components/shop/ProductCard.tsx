@@ -311,7 +311,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               {/* Product Thumbnails (if multiple exist) */}
               {!isZoomed && currentImages.length > 0 && (
                 <div className="h-24 bg-white border-t border-gray-100 flex items-center gap-4 px-6 overflow-x-auto">
-                  {currentImages.map((img, idx) => (
+                  {currentImages.map((img: string, idx: number) => (
                     <button 
                       key={idx} 
                       onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
