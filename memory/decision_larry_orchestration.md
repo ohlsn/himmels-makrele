@@ -45,12 +45,23 @@ type: decision
 - Mindestens 2–3 Feedback-Memorys in MEMORY.md, damit die in laufender Session als Echo wirken
 - Diese decision-Datei selbst zählt als erstes Beispiel
 
+### E. Git-Sync-Check beim Session-Start + vor Deploys
+
+**Problem:** Heute (2026-05-14) habe ich am Session-Start nur `git log` und `git status` geprüft, aber kein `git fetch`. Lokale Historie sah vertraut aus, also nahm ich an: synchron. Tatsächlich war origin 5 Commits voraus (mit `/danke`, Live-Shipping-Rates, Address-Modal). Beim ersten Production-Deploy habe ich diese 5 Commits versehentlich überschrieben → Live-Regression auf himmels-makrele.com.
+
+**Maßnahme:**
+- **SessionStart-Hook** (`.claude/hooks/git-sync-check.sh`): bei Sessionstart automatisch `git fetch` + `git status -sb` ausführen. Wenn lokaler Branch behind/ahead von origin: als System-Reminder injecten "⚠️ Drift erkannt — vor Code-Änderungen klären".
+- **PreToolUse-Hook für `vercel deploy` und `git push`**: bevor diese Befehle laufen, erneuter `git fetch` + Drift-Check. Bei behind-Status: Hook blockiert oder warnt mit explizitem System-Reminder.
+- **CLAUDE.md-Klausel** (zusätzlich zum Hook, als Backup): "Beim Session-Start IMMER `git fetch && git status` ausführen. Bei Drift stoppen und User informieren."
+
+**Warum nicht nur CLAUDE.md-Regel:** Wie bei Larry — weiche Regeln werden im Aktionsmodus überlagert. Hooks sind die einzige zuverlässige Methode.
+
 ---
 
 ## Wenn umgesetzt → Übertragung in Template
 
-- Alle vier Maßnahmen unter `_template/` (Pfad: `/Users/oli/Documents/Vibe-Coding projects/_template/`) replizieren
-- Damit jedes neue Vibe-Coding-Projekt mit Larry-Setup startet
+- Alle fünf Maßnahmen (A–E) unter `_template/` (Pfad: `/Users/oli/Documents/Vibe-Coding projects/_template/`) replizieren
+- Damit jedes neue Vibe-Coding-Projekt mit Larry-Setup + Git-Sync-Schutz startet
 - Hook-Skripte parametrieren so, dass sie projektneutral funktionieren
 
 ---

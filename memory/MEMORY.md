@@ -36,8 +36,8 @@ Memory types (use as filename prefixes for consistency):
 
 ## Decisions
 
-- [Larry-Orchestrator-Setup](decision_larry_orchestration.md) — Plan zur technischen Verankerung der Team-Regel (Subagents, Hooks, CLAUDE.md-Restruktur); umzusetzen nach aktueller Repricing-Aufgabe
+- [Larry-Orchestrator-Setup](decision_larry_orchestration.md) — Plan zur technischen Verankerung der Team-Regel + Git-Sync-Check beim Session-Start (Subagents, Hooks, CLAUDE.md-Restruktur); umzusetzen sobald himmels-makrele live ist
 
 ## Sessions
 
-<!-- e.g. - [2026-05-12](sessions/session_2026-05-12.md) — Added EP09 to dashboard; refreshed community aggregates -->
+- [2026-05-14](sessions/session_2026-05-14.md) — Stripe Tax (Test+Live), Pricing-Architektur (pricing.ts), Live-Schaltung auf himmels-makrele.com; nächste Session: echter Test-Kauf

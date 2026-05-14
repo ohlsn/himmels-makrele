@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { shopData } from "../../../../content/shop";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123", {
-  apiVersion: "2026-03-25.dahlia",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123");
 
 const FALLBACK_SHIPPING_CENTS = 499; // €4.99 falls Printful API mal nicht antwortet
 

@@ -3,9 +3,7 @@ import Stripe from "stripe";
 
 // Die Kasse initialisieren
 // Wenn noch kein Key da ist, nutzen wir einen Platzhalter, damit der Server nicht abstürzt
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123", {
-  apiVersion: "2026-03-25.dahlia",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123");
 
 export async function POST(req: Request) {
   // Das Stripe-'Walkie-Talkie' sendet uns einen versteckten Sicherheitscode
