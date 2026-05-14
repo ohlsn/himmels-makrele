@@ -34,8 +34,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-428001712",
     "name": "Girrafant cotton t-shirt",
-    "price": "€ 16,00",
-    "stripePriceId": "price_1TLpUJIvvuq0QPHzfuVjD7qX",
+    "price": "€ 29,90",
+    "stripePriceId": "price_1TWv70Ivvuq0QPHzLku7Kch7",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Dein neues Lieblings-Shirt! Hervorragende Passform, weicher Stoff und ein Design, das dich so frei wie die Himmels Makrele fühlen lässt.\n\nMaterial & Details:\n• 100 % gekämmte und ringgesponnene Premium-Baumwolle\n• Stoffgewicht: 142 g/m²\n• Vorgeschrumpftes Material für lange Formstabilität\n• Schulter-zu-Schulter-Taping und Seitennähte für idealen Sitz",
@@ -56,8 +56,8 @@ export const shopData: Product[] = [
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5267030883,
-        "price": "€ 16,00",
-        "numericPrice": 1600,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       }
     ],
@@ -66,8 +66,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427646958",
     "name": "Girrafant Sweatshirt",
-    "price": "€ 19,00",
-    "stripePriceId": "price_1TLpULIvvuq0QPHzqFyS3sMN",
+    "price": "€ 34,90",
+    "stripePriceId": "price_1TWv71Ivvuq0QPHz26TruzvY",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Bequemes Sweatshirt mit modernem Schnitt. Perfekt, um deine innere Himmels Makrele formschön nach außen zu tragen.\n\nMaterial & Details:\n• 50 % Baumwolle, 50 % Polyester\n• Stoffgewicht: 271,25 g/m²\n• Sportlicher Kragen, Bündchen und Taille aus Rippstrick\n• Weiches Fleece-Innenfutter für maximalen Tragekomfort",
@@ -169,240 +169,240 @@ export const shopData: Product[] = [
         "size": "XS",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263780361,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263780363,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263780364,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263780365,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263780367,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263780368,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263780370,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263780371,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263780373,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263780374,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263780375,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263780377,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263780378,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263780380,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263780381,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263780383,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263780384,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263780385,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263780386,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263780387,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263780388,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263780389,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263780390,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263780391,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263780392,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Weiß",
         "printfulSyncVariantId": 5263780393,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5263780394,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263780395,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Weiß",
         "printfulSyncVariantId": 5263780396,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Weiß",
         "printfulSyncVariantId": 5263780397,
-        "price": "€ 19,00",
-        "numericPrice": 1900,
+        "price": "€ 34,90",
+        "numericPrice": 3490,
         "isOutOfStock": false
       }
     ],
@@ -411,8 +411,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427646662",
     "name": "Youth classic tee",
-    "price": "€ 11,50",
-    "stripePriceId": "price_1TLpUNIvvuq0QPHzDvdEuJ6s",
+    "price": "€ 24,90",
+    "stripePriceId": "price_1TWv72Ivvuq0QPHzLVY8gMM6",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Auch für die kleinsten Makrelen: Superweich, gemütlich und perfekt zum Toben in der großen weiten Welt.\n\nMaterial & Details:\n• 100 % weiche, ringgesponnene (Bio-)Baumwolle (Meliert enthält Polyesteranteile)\n• Besonders hautfreundlich und komfortabel\n• Hervorragende Passform auch nach dem Waschen\n• Verstärkte Nähte für extra Langlebigkeit",
@@ -628,240 +628,240 @@ export const shopData: Product[] = [
         "size": "XS",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263778515,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263778516,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263778517,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263778518,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263778519,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263778520,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263778521,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263778522,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263778523,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263778524,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263778525,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263778526,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263778527,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263778528,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263778529,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263778530,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263778531,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263778532,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263778533,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263778534,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263778535,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263778536,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263778537,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263778538,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263778539,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Weiß",
         "printfulSyncVariantId": 5263778540,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5263778541,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263778542,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Weiß",
         "printfulSyncVariantId": 5263778543,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Weiß",
         "printfulSyncVariantId": 5263778544,
-        "price": "€ 11,50",
-        "numericPrice": 1150,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       }
     ],
@@ -870,8 +870,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427646425",
     "name": "Organic cotton kids t-shirt",
-    "price": "€ 17,00",
-    "stripePriceId": "price_1TLpUOIvvuq0QPHz4wAN3M77",
+    "price": "€ 29,90",
+    "stripePriceId": "price_1TWv73Ivvuq0QPHz88EUksAI",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Auch für die kleinsten Makrelen: Superweich, gemütlich und perfekt zum Toben in der großen weiten Welt.\n\nMaterial & Details:\n• 100 % weiche, ringgesponnene (Bio-)Baumwolle (Meliert enthält Polyesteranteile)\n• Besonders hautfreundlich und komfortabel\n• Hervorragende Passform auch nach dem Waschen\n• Verstärkte Nähte für extra Langlebigkeit",
@@ -925,80 +925,80 @@ export const shopData: Product[] = [
         "size": "3-4",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263776762,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "5-6",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263776763,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "7-8",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263776765,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "9-11",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263776766,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "12-13",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263776768,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "3-4",
         "color": "Weiß",
         "printfulSyncVariantId": 5263776769,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "5-6",
         "color": "Weiß",
         "printfulSyncVariantId": 5263776770,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "7-8",
         "color": "Weiß",
         "printfulSyncVariantId": 5263776772,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "9-11",
         "color": "Weiß",
         "printfulSyncVariantId": 5263776773,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       },
       {
         "size": "12-13",
         "color": "Weiß",
         "printfulSyncVariantId": 5263776774,
-        "price": "€ 17,00",
-        "numericPrice": 1700,
+        "price": "€ 29,90",
+        "numericPrice": 2990,
         "isOutOfStock": false
       }
     ],
@@ -1007,8 +1007,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427645681",
     "name": "Girrafant Baby jersey bodysuit",
-    "price": "€ 13,00",
-    "stripePriceId": "price_1TLpUPIvvuq0QPHzGHWPIhZ1",
+    "price": "€ 26,90",
+    "stripePriceId": "price_1TWv74Ivvuq0QPHzPGnSZn1e",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Auch für die kleinsten Makrelen: Superweich, gemütlich und perfekt zum Toben in der großen weiten Welt.\n\nMaterial & Details:\n• 100 % weiche, ringgesponnene (Bio-)Baumwolle (Meliert enthält Polyesteranteile)\n• Besonders hautfreundlich und komfortabel\n• Hervorragende Passform auch nach dem Waschen\n• Verstärkte Nähte für extra Langlebigkeit",
@@ -1067,96 +1067,96 @@ export const shopData: Product[] = [
         "size": "6M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263772027,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": true
       },
       {
         "size": "12M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263772028,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "18M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263772029,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "24M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263772030,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "6M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263772031,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": true
       },
       {
         "size": "12M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263772032,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "18M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263772033,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "24M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263772034,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "6M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263772035,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": true
       },
       {
         "size": "12M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263772036,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "18M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263772037,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       },
       {
         "size": "24M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263772038,
-        "price": "€ 13,00",
-        "numericPrice": 1300,
+        "price": "€ 26,90",
+        "numericPrice": 2690,
         "isOutOfStock": false
       }
     ],
@@ -1165,8 +1165,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427645374",
     "name": "Wolf T-Shirt",
-    "price": "€ 11,00",
-    "stripePriceId": "price_1TLpUQIvvuq0QPHzec2tUW2Z",
+    "price": "€ 24,90",
+    "stripePriceId": "price_1TWv75Ivvuq0QPHzeC3sYuyT",
     "category": "T-Shirt",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Dein neues Lieblings-Shirt! Hervorragende Passform, weicher Stoff und ein Design, das dich so frei wie die Himmels Makrele fühlen lässt.\n\nMaterial & Details:\n• 100 % gekämmte und ringgesponnene Premium-Baumwolle\n• Stoffgewicht: 142 g/m²\n• Vorgeschrumpftes Material für lange Formstabilität\n• Schulter-zu-Schulter-Taping und Seitennähte für idealen Sitz",
@@ -1202,40 +1202,40 @@ export const shopData: Product[] = [
         "size": "XS",
         "color": "Weiß",
         "printfulSyncVariantId": 5263769656,
-        "price": "€ 11,00",
-        "numericPrice": 1100,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5263769657,
-        "price": "€ 11,00",
-        "numericPrice": 1100,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263769658,
-        "price": "€ 11,00",
-        "numericPrice": 1100,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Weiß",
         "printfulSyncVariantId": 5263769659,
-        "price": "€ 11,00",
-        "numericPrice": 1100,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Weiß",
         "printfulSyncVariantId": 5263769660,
-        "price": "€ 11,00",
-        "numericPrice": 1100,
+        "price": "€ 24,90",
+        "numericPrice": 2490,
         "isOutOfStock": false
       }
     ],
@@ -1244,8 +1244,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427644473",
     "name": "Girrafant Hoodie",
-    "price": "€ 22,50",
-    "stripePriceId": "price_1TLpUSIvvuq0QPHzE22e9iTA",
+    "price": "€ 39,90",
+    "stripePriceId": "price_1TWv76Ivvuq0QPHzRljYVdgX",
     "category": "Hoodie",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Kuscheliger, hochwertiger Hoodie für kalte Tage und freie Gedanken. Aus weicher, langlebiger Qualität gefertigt, verleiht er dir echte Makrelen-Vibes.\n\nMaterial & Details:\n• 50 % vorgeschrumpfte Baumwolle, 50 % Polyester\n• Stoffgewicht: 271,25 g/m²\n• Weiches Fleecematerial innen\n• Doppelt gefütterte Kapuze mit farblich passendem Kordelzug\n• Praktische Kängurutasche auf der Vorderseite",
@@ -1431,320 +1431,320 @@ export const shopData: Product[] = [
         "size": "XS",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263763761,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263763762,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263763763,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263763764,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Schwarz",
         "printfulSyncVariantId": 5263763765,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263763766,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263763767,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263763768,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263763769,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Marineblau",
         "printfulSyncVariantId": 5263763770,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263763771,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263763772,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263763773,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263763774,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Dunkelgrau",
         "printfulSyncVariantId": 5263763775,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263763776,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263763777,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263763778,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263763780,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Königsblau",
         "printfulSyncVariantId": 5263763781,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Carolina Blau",
         "printfulSyncVariantId": 5263763782,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Carolina Blau",
         "printfulSyncVariantId": 5263763783,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Carolina Blau",
         "printfulSyncVariantId": 5263763784,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Carolina Blau",
         "printfulSyncVariantId": 5263763785,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Carolina Blau",
         "printfulSyncVariantId": 5263763786,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263763787,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263763788,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263763789,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263763790,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Hellrosa",
         "printfulSyncVariantId": 5263763791,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263763792,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263763793,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263763794,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263763795,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Sportgrau",
         "printfulSyncVariantId": 5263763796,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XS",
         "color": "Weiß",
         "printfulSyncVariantId": 5263763797,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5263763798,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263763799,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Weiß",
         "printfulSyncVariantId": 5263763800,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Weiß",
         "printfulSyncVariantId": 5263763801,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       }
     ],
@@ -1753,8 +1753,8 @@ export const shopData: Product[] = [
   {
     "id": "prod-427643733",
     "name": "Wolfs Hoodie",
-    "price": "€ 22,50",
-    "stripePriceId": "price_1TLpUTIvvuq0QPHzCoXAXgCi",
+    "price": "€ 39,90",
+    "stripePriceId": "price_1TWv77Ivvuq0QPHzaS6iG9fa",
     "category": "Hoodie",
     "shortDescription": "Original Himmels Makrele Printful Collection",
     "description": "Kuscheliger, hochwertiger Hoodie für kalte Tage und freie Gedanken. Aus weicher, langlebiger Qualität gefertigt, verleiht er dir echte Makrelen-Vibes.\n\nMaterial & Details:\n• 50 % vorgeschrumpfte Baumwolle, 50 % Polyester\n• Stoffgewicht: 271,25 g/m²\n• Weiches Fleecematerial innen\n• Doppelt gefütterte Kapuze mit farblich passendem Kordelzug\n• Praktische Kängurutasche auf der Vorderseite",
@@ -1793,40 +1793,40 @@ export const shopData: Product[] = [
         "size": "XS",
         "color": "Weiß",
         "printfulSyncVariantId": 5263757626,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "S",
         "color": "Weiß",
         "printfulSyncVariantId": 5263757627,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "M",
         "color": "Weiß",
         "printfulSyncVariantId": 5263757628,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "L",
         "color": "Weiß",
         "printfulSyncVariantId": 5263757629,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       },
       {
         "size": "XL",
         "color": "Weiß",
         "printfulSyncVariantId": 5263757630,
-        "price": "€ 22,50",
-        "numericPrice": 2250,
+        "price": "€ 39,90",
+        "numericPrice": 3990,
         "isOutOfStock": false
       }
     ],
