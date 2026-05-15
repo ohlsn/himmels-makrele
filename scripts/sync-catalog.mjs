@@ -6,6 +6,7 @@ import readline from 'readline/promises';
 import Stripe from 'stripe';
 import sharp from 'sharp';
 import { loadPricing } from './_lib_pricing.mjs';
+import { detectFamily } from './_lib_size_family.mjs';
 
 const IMG_MAX_DIM = 1600;
 const IMG_QUALITY = 80;
@@ -182,6 +183,8 @@ async function run() {
     // Hole Katalog-Produkt Beschreibung & Stock info
     let productDescription = "Original Himmels Makrele Printful Collection";
     let baseProductTitle = "";
+    let baseTypeName = "";
+    let sizeFamily;
     let sizeGuide;
     const catalogInOutStock = {};
     if (varData.result.sync_variants.length > 0) {
@@ -194,6 +197,9 @@ async function run() {
           const catData = await catReq.json();
           if (catData.code === 200 && catData.result?.product) {
             baseProductTitle = catData.result.product.title || "";
+            baseTypeName = catData.result.product.type_name || "";
+            sizeFamily = detectFamily(baseProductTitle, baseTypeName);
+            console.log(` - Family: ${sizeFamily} (${baseProductTitle})`);
             const pNameLower = p.name.toLowerCase();
             if (pNameLower.includes("hoodie")) {
               productDescription = "Kuscheliger, hochwertiger Hoodie für kalte Tage und freie Gedanken. Aus weicher, langlebiger Qualität gefertigt, verleiht er dir echte Makrelen-Vibes.\n\nMaterial & Details:\n• 50 % vorgeschrumpfte Baumwolle, 50 % Polyester\n• Stoffgewicht: 271,25 g/m²\n• Weiches Fleecematerial innen\n• Doppelt gefütterte Kapuze mit farblich passendem Kordelzug\n• Praktische Kängurutasche auf der Vorderseite";
@@ -320,6 +326,8 @@ async function run() {
       colors: parsedColors,
       variants: variants,
       ...(sizeGuide ? { sizeGuide } : {}),
+      ...(sizeFamily ? { sizeFamily } : {}),
+      ...(baseProductTitle ? { catalogTitle: baseProductTitle } : {}),
       printifyUrl: "#"
     });
   }
@@ -529,6 +537,13 @@ export interface Product {
   colors: ProductColor[];
   variants: ProductVariant[];
   sizeGuide?: ProductSizeGuide;
+
+  // Aus Printful Catalog Title automatisch erkannt (sync-catalog / sync-size-families).
+  // Source of truth für Adult/Kids/Baby-Sizing.
+  sizeFamily?: "adult" | "kids" | "baby";
+  // Printful-Rohling-Titel (z.B. "Youth Classic Tee | Gildan 5000B") —
+  // hilft beim Debuggen, wenn sizeFamily mal überraschend kippt.
+  catalogTitle?: string;
 }
 
 // ⚠️ AUTO-SYNCED: Diese Datei wurde automatisch vom sync-catalog Skript generiert!

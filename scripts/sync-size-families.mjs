@@ -14,6 +14,7 @@
  * Greift keine Preise, Stripe-Produkte oder Bilder an.
  */
 import fs from 'fs/promises';
+import { detectFamily } from './_lib_size_family.mjs';
 
 async function readEnv() {
   const envContent = await fs.readFile('.env.local', 'utf-8');
@@ -33,32 +34,6 @@ function parseShop(raw) {
     shopData: JSON.parse(match[2]),
     suffix: match[3],
   };
-}
-
-/**
- * Erkennt die Größenfamilie aus Printfuls Catalog-Strings.
- *
- * Reihenfolge bewusst: baby vor kids, kids vor youth, sonst adult.
- * "Youth" wird zu "kids" zusammengefasst, weil unsere UI nur drei
- * Familien kennt und Youth-Sizing dasselbe Altersmodell hat wie Kids.
- */
-function detectFamily(catalogTitle, typeName) {
-  const haystack = `${catalogTitle ?? ''} ${typeName ?? ''}`.toLowerCase();
-
-  // Baby/Infant: typischerweise Bodysuits, Onesies, "Infant"-Marker
-  if (/\b(baby|infant|onesie)\b/.test(haystack)) return 'baby';
-  if (/\bbodysuit\b/.test(haystack)) return 'baby';
-
-  // Toddler: 2T/3T/4T-Größen, eigene Linie. Mappen wir auf "baby", weil
-  // unsere Tabellen Alter/Körpergröße nutzen und Toddler näher an Baby
-  // als an Schulkindern liegen.
-  if (/\btoddler\b/.test(haystack)) return 'baby';
-
-  // Kids und Youth — beides kindliche Sizing.
-  if (/\bkids?\b/.test(haystack)) return 'kids';
-  if (/\byouth\b/.test(haystack)) return 'kids';
-
-  return 'adult';
 }
 
 async function getCatalogInfo(syncVariantId, apiKey) {
