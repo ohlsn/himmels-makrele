@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type ShippingAddress = {
   name: string;
@@ -32,6 +32,15 @@ export default function ShippingAddressModal({
     city: "",
     country: "DE",
   });
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !submitting) onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [open, submitting, onClose]);
 
   if (!open) return null;
 

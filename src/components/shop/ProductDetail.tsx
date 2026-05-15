@@ -23,6 +23,7 @@ export default function ProductDetail({ product }: Props) {
   const [loading, setLoading] = useState(false);
   const [addressModalOpen, setAddressModalOpen] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const currentImages = selectedColor?.images ?? [];
   const selectedVariant = product.variants.find(
@@ -30,11 +31,7 @@ export default function ProductDetail({ product }: Props) {
       variant.color === selectedColor?.name && variant.size === selectedSize,
   );
   const displayPrice = selectedVariant?.price || product.price;
-  const currentVariant = product.variants.find(
-    (variant) =>
-      variant.color === selectedColor?.name && variant.size === selectedSize,
-  );
-  const isOutOfStock = currentVariant?.isOutOfStock;
+  const isOutOfStock = selectedVariant?.isOutOfStock;
 
   const availableSizesForColor = useMemo(
     () =>
@@ -58,25 +55,27 @@ export default function ProductDetail({ product }: Props) {
   };
 
   const handleCheckout = () => {
+    setErrorMessage(null);
     if (!selectedColor || !selectedSize) {
-      alert("Bitte wähle zuerst Farbe und Größe aus.");
+      setErrorMessage("Bitte wähle zuerst Farbe und Größe aus.");
       return;
     }
-    if (!currentVariant) {
-      alert("Diese Farb-Größen-Kombination gibt es leider nicht.");
+    if (!selectedVariant) {
+      setErrorMessage("Diese Farb-Größen-Kombination gibt es leider nicht.");
       return;
     }
-    if (currentVariant.isOutOfStock) {
-      alert("Diese Größe ist gerade nicht auf Lager.");
+    if (selectedVariant.isOutOfStock) {
+      setErrorMessage("Diese Größe ist gerade nicht auf Lager.");
       return;
     }
     setAddressModalOpen(true);
   };
 
   const handleAddressSubmit = async (address: ShippingAddress) => {
-    if (!selectedColor || !selectedSize || !currentVariant) return;
+    if (!selectedColor || !selectedSize || !selectedVariant) return;
 
     setLoading(true);
+    setErrorMessage(null);
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -85,7 +84,7 @@ export default function ProductDetail({ product }: Props) {
           productId: product.id,
           color: selectedColor.name,
           size: selectedSize,
-          printfulSyncVariantId: currentVariant.printfulSyncVariantId,
+          printfulSyncVariantId: selectedVariant.printfulSyncVariantId,
           shippingAddress: address,
         }),
       });
@@ -94,12 +93,14 @@ export default function ProductDetail({ product }: Props) {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert("Fehler beim Öffnen der Kasse: " + (data.error ?? "Unbekannt"));
+        setErrorMessage(
+          "Die Kasse ließ sich nicht öffnen: " + (data.error ?? "Unbekannter Fehler"),
+        );
         setLoading(false);
         setAddressModalOpen(false);
       }
     } catch {
-      alert("Netzwerkfehler beim Verbinden mit der Kasse.");
+      setErrorMessage("Netzwerkfehler beim Verbinden mit der Kasse.");
       setLoading(false);
       setAddressModalOpen(false);
     }
@@ -260,14 +261,14 @@ export default function ProductDetail({ product }: Props) {
                     loading ||
                     !selectedColor ||
                     !selectedSize ||
-                    !currentVariant ||
+                    !selectedVariant ||
                     isOutOfStock
                   }
                   className={`w-full rounded-full py-4 font-heading font-semibold text-lg transition-all ${
                     loading ||
                     !selectedColor ||
                     !selectedSize ||
-                    !currentVariant ||
+                    !selectedVariant ||
                     isOutOfStock
                       ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                       : "bg-fish-gold text-ocean hover:bg-fish-orange shadow-lg hover:-translate-y-0.5"
@@ -281,6 +282,15 @@ export default function ProductDetail({ product }: Props) {
                         ? "Größe wählen"
                         : "Weiter zur Bezahlung"}
                 </button>
+
+                {errorMessage && (
+                  <div
+                    role="alert"
+                    className="rounded-xl border border-fish-orange/30 bg-fish-orange/10 px-4 py-3 text-sm text-ocean"
+                  >
+                    {errorMessage}
+                  </div>
+                )}
 
                 <ProductInfoAccordion product={product} />
               </div>

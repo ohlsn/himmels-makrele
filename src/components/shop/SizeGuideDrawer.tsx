@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { Product, ProductSizeGuideTable } from "../../../content/shop";
 import {
   getEverydaySizeRows,
@@ -118,6 +119,15 @@ function measuringSteps(family: ReturnType<typeof getProductSizeFamily>) {
 }
 
 export default function SizeGuideDrawer({ product, open, onClose }: Props) {
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   const family = getProductSizeFamily(product);

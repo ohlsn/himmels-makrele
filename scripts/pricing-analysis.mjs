@@ -2,10 +2,15 @@
  * 📊 Preisanalyse: Wholesale (Printful Produktion) vs. aktueller Retail-Preis
  *    + Marge nach VAT 21% + Stripe-Gebühren.
  *
+ * Quelle für Retail: content/pricing.ts (Single Source of Truth).
+ * Printfuls retail_price wird bewusst NICHT genutzt — falls Stripe/pricing.ts
+ * divergieren, will man das hier auch sehen können.
+ *
  * Hinweis: Versand kommt extra dazu — Printful berechnet ihn pro Bestellung.
  *          Typisch EU-Versand für Apparel: 3,99–5,99 € pro Item.
  */
 import fs from 'fs/promises';
+import { loadPricing } from './_lib_pricing.mjs';
 
 const STRIPE_FEE_PCT = 0.015;   // 1,5% für EU-Karten
 const STRIPE_FEE_FIX = 0.25;     // 25 Cent pro Transaktion
@@ -20,17 +25,26 @@ envContent.split('\n').forEach(line => {
 });
 const PRINTFUL_KEY = env.PRINTFUL_API_KEY;
 
+const pricing = await loadPricing();
+
 const shopRaw = await fs.readFile('./content/shop.ts', 'utf-8');
 const m = shopRaw.match(/export const shopData: Product\[\] = (\[[\s\S]+\]);/);
 const shopData = JSON.parse(m[1]);
 
-console.log("\nPrintful Wholesale vs. aktueller Retail (mit Marge-Rechnung)\n");
+console.log("\nPrintful Wholesale vs. aktueller Retail aus pricing.ts (mit Marge-Rechnung)\n");
 console.log("Produkt".padEnd(32), "Retail".padStart(8), "Wholesale".padStart(10), "Netto".padStart(8), "Gewinn".padStart(8));
 console.log("-".repeat(72));
 
 for (const p of shopData) {
   const v = p.variants[0];
   const syncVariantId = v.printfulSyncVariantId;
+  const retailCents = pricing[p.id];
+
+  if (!retailCents) {
+    console.log(p.name.padEnd(32), "(kein Eintrag in pricing.ts)");
+    continue;
+  }
+
   try {
     const svRes = await fetch(`https://api.printful.com/store/variants/${syncVariantId}`, {
       headers: { Authorization: `Bearer ${PRINTFUL_KEY}` },
@@ -47,7 +61,7 @@ for (const p of shopData) {
     const catVar = catData.result.variants.find(cv => cv.id === variantId);
     const wholesale = parseFloat(catVar?.price || "0");
 
-    const retail = parseFloat(sv.retail_price);
+    const retail = retailCents / 100;
     const vatAmount = retail * VAT_RATE / (1 + VAT_RATE);
     const stripeFee = retail * STRIPE_FEE_PCT + STRIPE_FEE_FIX;
     const netRevenue = retail - vatAmount - stripeFee;
