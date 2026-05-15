@@ -13,20 +13,31 @@ export type EverydaySizeRow = {
 
 export type ProductSizeFamily = "adult" | "kids" | "baby";
 
-export const productSizeFamilyOverrides: Record<string, ProductSizeFamily> = {
-  "prod-428001712": "adult",
-  "prod-427646958": "kids",
-  "prod-427646662": "kids",
-  "prod-427646425": "kids",
-  "prod-427645681": "baby",
-  "prod-427645374": "adult",
-  "prod-427644473": "adult",
-  "prod-427643733": "adult",
-};
+/**
+ * Manuelle Overrides für Edge-Cases — höchste Priorität.
+ *
+ * Standardweg ist `product.sizeFamily` aus shop.ts, das beim Sync per
+ * scripts/sync-size-families.mjs aus Printfuls Catalog-Title ermittelt wird.
+ *
+ * Einen Override nur dann eintragen, wenn die Auto-Erkennung nachweislich
+ * falsch ist (Printful-Titel mehrdeutig, untypischer Rohling, etc.).
+ */
+export const productSizeFamilyOverrides: Record<string, ProductSizeFamily> = {};
 
+/**
+ * Resolution-Reihenfolge:
+ *   1. Manueller Override
+ *   2. shop.ts `sizeFamily` (auto-detected aus Printful Catalog)
+ *   3. Heuristik aus Namen/Größen (Last-Resort, damit die UI nie kaputt geht)
+ *
+ * Der harte Pfad (Build-Gate) prüft, dass jedes Produkt 1 oder 2 erfüllt —
+ * Heuristik ist nur Runtime-Sicherheit, nicht Datenqualität.
+ */
 export function getProductSizeFamily(product: Product): ProductSizeFamily {
   const override = productSizeFamilyOverrides[product.id];
   if (override) return override;
+
+  if (product.sizeFamily) return product.sizeFamily;
 
   const name = product.name.toLowerCase();
   const sizeSet = new Set(product.sizes);

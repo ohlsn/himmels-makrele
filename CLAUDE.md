@@ -7,7 +7,8 @@ Ein Next.js 16 App Router Projekt (TypeScript, Tailwind CSS v4, Framer Motion).
 - `node scripts/sync-catalog.mjs` — Synchronisiert `content/shop.ts` aus dem Printful-Store (Produkte, Varianten, Farben, Lagerstatus, Preview-Bilder, Mockup-Inbox; zieht Brutto-Preise aus `content/pricing.ts`, nicht aus Printfuls retail_price)
 - `node scripts/apply-pricing.mjs` — Nach Edit von `content/pricing.ts`: zieht Stripe-Preise nach + aktualisiert `shop.ts`
 - `node scripts/sync-size-guides.mjs` — Ergänzt `content/shop.ts` um Printful-Größentabellen, ohne Preise/Stripe/Bilder anzufassen
-- `npm run check:size-guides` — Blockiert neue Produkte ohne explizite Größenfamilie (`adult`, `kids`, `baby`)
+- `npm run sync:size-families` — Liest Printful Catalog Title (z.B. "Youth Classic Tee", "Baby Bodysuit") und persistiert `sizeFamily` (`adult`/`kids`/`baby`) pro Produkt in `content/shop.ts`. Auto-Detection statt manueller Override-Liste.
+- `npm run check:size-guides` — Blockiert Produkte ohne Größenfamilie (auto oder Override) und warnt bei Override↔Auto-Konflikten
 - `node scripts/pricing-analysis.mjs` — Analyse aktueller Preise vs. Wholesale + Gewinn-Rechnung
 - `node scripts/test-order.mjs` — Sendet eine DRAFT-Bestellung an Printful (kostet nichts, dient zum Testen der API-Anbindung)
 
@@ -43,7 +44,7 @@ Texte aus der Ich-Perspektive der "Himmels Makrele":
 - `sync-catalog.mjs` entpackt ZIPs automatisch, scannt Unterordner rekursiv, matched Produkt und Farbe, fragt bei Mehrdeutigkeit im Terminal nach, kopiert Bilder nach `public/assets/shop/`, löscht die verarbeiteten Inbox-Dateien und generiert `content/shop.ts`.
 - Der Recovery-Scanner im Skript verknüpft bereits vorhandene `prod-...` Bilder im Shop-Ordner erneut, falls sie beim vorherigen Lauf noch nicht in `shop.ts` standen.
 - Größentabellen: Lokale Alltags-/EU-Größen stehen in [content/sizeGuides.ts](content/sizeGuides.ts). Exakte Printful-Produktmaße sind sekundär und werden per `sync-size-guides.mjs` nach `content/shop.ts` ergänzt.
-- Nach jedem neuen Printful-Produkt muss `npm run check:size-guides` laufen. Neue Produkt-IDs müssen bewusst in `productSizeFamilyOverrides` als `adult`, `kids` oder `baby` eingetragen werden, damit XS/S/M/L/XL nicht falsch interpretiert wird.
+- Größenfamilie (`adult`/`kids`/`baby`) wird automatisch aus Printfuls Catalog-Title erkannt — XS-XL ist mehrdeutig, aber "Youth Classic Tee" oder "Baby Bodysuit" ist eindeutig. Workflow für neue Produkte: `node scripts/sync-size-families.mjs` ausführen, dann `npm run check:size-guides` als Gate. `productSizeFamilyOverrides` in sizeGuides.ts bleibt nur für echte Edge-Cases, in denen Printfuls Title irreführend ist.
 
 ### 3. ENV (`.env.local`, nicht im Repo)
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`

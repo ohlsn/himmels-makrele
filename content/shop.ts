@@ -52,6 +52,13 @@ export interface Product {
   colors: ProductColor[];
   variants: ProductVariant[];
   sizeGuide?: ProductSizeGuide;
+
+  // Aus Printful Catalog Title automatisch erkannt (sync-size-families.mjs).
+  // Source of truth für Adult/Kids/Baby-Sizing.
+  sizeFamily?: "adult" | "kids" | "baby";
+  // Printful-Rohling-Titel (z.B. "Youth Classic Tee | Gildan 5000B") —
+  // hilft beim Debuggen, wenn sizeFamily mal überraschend kippt.
+  catalogTitle?: string;
 }
 
 // ⚠️ AUTO-SYNCED: Diese Datei wurde automatisch vom sync-catalog Skript generiert!
@@ -355,7 +362,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "adult",
+    "catalogTitle": "Unisex Organic Cotton Creator 2.0 T-Shirt | Stanley/Stella STTU169"
   },
   {
     "id": "prod-427646958",
@@ -888,7 +897,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Youth Crew Neck Sweatshirt | Gildan 18000B"
   },
   {
     "id": "prod-427646662",
@@ -1485,7 +1496,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Youth Classic Tee | Gildan 5000B"
   },
   {
     "id": "prod-427646425",
@@ -1810,7 +1823,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Kids Organic Cotton Mini Creator 2.0 T-Shirt | Stanley/Stella STTK184"
   },
   {
     "id": "prod-427645681",
@@ -2033,7 +2048,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "baby",
+    "catalogTitle": "Baby Jersey Bodysuit | Rabbit Skins 4424"
   },
   {
     "id": "prod-427645374",
@@ -2250,7 +2267,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Youth Classic Tee | Gildan 5000B"
   },
   {
     "id": "prod-427644473",
@@ -2947,7 +2966,9 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Youth Heavy Blend Hoodie | Gildan 18500B"
   },
   {
     "id": "prod-427643733",
@@ -3217,6 +3238,8 @@ export const shopData: Product[] = [
           ]
         }
       ]
-    }
+    },
+    "sizeFamily": "kids",
+    "catalogTitle": "Youth Heavy Blend Hoodie | Gildan 18500B"
   }
 ];

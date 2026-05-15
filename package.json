@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "sync:size-families": "node scripts/sync-size-families.mjs",
     "check:size-guides": "node scripts/check-size-guides.mjs"
   },
   "dependencies": {
