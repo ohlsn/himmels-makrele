@@ -2,7 +2,21 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { shopData } from "../../../../content/shop";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_123");
+function getEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`${name} is not configured`);
+  return value;
+}
+
+let stripeClient: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!stripeClient) {
+    stripeClient = new Stripe(getEnv("STRIPE_SECRET_KEY"), {
+      apiVersion: "2026-03-25.dahlia",
+    });
+  }
+  return stripeClient;
+}
 
 const FALLBACK_SHIPPING_CENTS = 499; // €4.99 falls Printful API mal nicht antwortet
 
@@ -18,11 +32,7 @@ async function getPrintfulShippingRate(
   syncVariantId: number,
   address: ShippingAddress,
 ): Promise<{ amountCents: number; label: string; minDays?: number; maxDays?: number } | null> {
-  const apiKey = process.env.PRINTFUL_API_KEY;
-  if (!apiKey) {
-    console.warn("PRINTFUL_API_KEY fehlt — Fallback-Versand wird genutzt.");
-    return null;
-  }
+  const apiKey = getEnv("PRINTFUL_API_KEY");
 
   try {
     const response = await fetch("https://api.printful.com/shipping/rates", {
@@ -136,6 +146,7 @@ export async function POST(req: Request) {
       }
     }
 
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card", "ideal", "klarna"],
       line_items: [
