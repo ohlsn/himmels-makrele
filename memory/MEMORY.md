@@ -37,3 +37,4 @@ Memory types (use as filename prefixes for consistency):
 ## Sessions
 
 - [2026-05-14](sessions/session_2026-05-14.md) — Stripe Tax (Test+Live), Pricing-Architektur (pricing.ts), Live-Schaltung auf himmels-makrele.com; nächste Session: echter Test-Kauf
+- [2026-05-15](sessions/session_2026-05-15.md) — Webhook-Idempotenz/ENV-Härtung, UI-Cleanup, sizeFamily-Auto-Detection aus Printful Catalog Title (Wolf/Hoodies sind Youth, nicht Adult); nächste Session: Live-Test-Kauf + Reflexionsgespräch zu Bug-Origins

@@ -16,7 +16,7 @@ Stand: 2026-05-15
 - Die Shop-Übersicht ist bewusst nur noch ein Produktkatalog. Kaufen passiert nicht mehr direkt auf der Card.
 - Produktdetailseiten laufen über `/shop/[productId]` und `src/components/shop/ProductDetail.tsx`.
 - Die Größenhilfe priorisiert lokale EU-/Alltagsgrößen aus `content/sizeGuides.ts`; exakte Printful-Maße sind sekundär im Drawer.
-- Jede Produkt-ID muss in `productSizeFamilyOverrides` explizit als `adult`, `kids` oder `baby` gepflegt sein. `npm run check:size-guides` prüft das, damit neue XS/S/M/L/XL-Produkte nicht automatisch falsch als Erwachsenengrößen angezeigt werden.
+- Die Größenfamilie (`adult`, `kids`, `baby`) wird automatisch aus dem Printful Catalog-Title erkannt — `sync-catalog.mjs` setzt `sizeFamily` + `catalogTitle` direkt im Hauptsync. `productSizeFamilyOverrides` in sizeGuides.ts bleibt nur für Edge-Cases, in denen Printfuls Title irreführend ist. `npm run check:size-guides` warnt bei Override↔Auto-Konflikten und blockiert fehlende Familien.
 - Produktdetails wie Beschreibung, Material, Pflege, Lieferung und Produktion stehen als Accordions unter dem CTA.
 - Checkout läuft über `src/app/api/checkout/route.ts`.
 - Erfolgreiche Zahlungen werden über `src/app/api/webhook/route.ts` an Printful gesendet.
@@ -42,15 +42,23 @@ Stand: 2026-05-15
 
 ## Wichtige Skripte
 
-- `node scripts/sync-catalog.mjs` — Printful + Mockup Inbox → `content/shop.ts`
+- `node scripts/sync-catalog.mjs` — Printful + Mockup Inbox → `content/shop.ts` (inkl. sizeFamily-Auto-Detection)
 - `node scripts/apply-pricing.mjs` — `content/pricing.ts` → Stripe Preise + `content/shop.ts`
 - `node scripts/sync-size-guides.mjs` — Printful Size Guides → `content/shop.ts`
-- `npm run check:size-guides` — kontrolliert explizite Größenfamilien pro Produkt
-- `node scripts/pricing-analysis.mjs` — Marge gegen Printful Wholesale, VAT, Stripe Fee und Versandannahme prüfen
+- `npm run sync:size-families` — Nachzieher nur für sizeFamily/catalogTitle, ohne Stripe/Bilder anzufassen
+- `npm run check:size-guides` — Build-Gate: Familie pro Produkt + Override-Konflikte
+- `node scripts/pricing-analysis.mjs` — Marge gegen Printful Wholesale, VAT, Stripe Fee und Versandannahme (nutzt pricing.ts als SoT)
 - `node scripts/test-order.mjs` — direkte Printful Draft Order als Sanity Check
+
+## Webhook-Eigenschaften (seit 2026-05-15)
+
+- Idempotent: `event.id` wird als `external_id` an Printful gesendet, doppelte Retries werden dort dedupliziert.
+- Bei Printful-5xx oder Netzwerkfehler: HTTP 500 → Stripe retried automatisch.
+- Bei Printful-4xx (außer Duplicate): HTTP 200, Order muss manuell aufgearbeitet werden (Stripe-Retry hilft nicht).
+- `retail_costs` (Subtotal netto, Shipping, Tax, Discount) werden an Printful übergeben.
 
 ## Bekannte naechste Punkte
 
 - Echter Live-Testkauf auf `https://himmels-makrele.com` prüfen: Adresse, Printful-Versand, VAT-Split, Zahlung, `/danke`, Stripe Dashboard, Printful Pending/Draft Order.
 - Danach ggf. Stripe Refund und Printful-Storno.
-- Dokumentation war veraltet und wurde am 2026-05-15 auf Stripe + Printful und "Versand im Checkout" korrigiert.
+- Reflexionsgespräch (vom User eingefordert am 2026-05-15): warum die Server-/UI-Bugs erst beim Re-Read auffielen, nicht beim Schreiben.
