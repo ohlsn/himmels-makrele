@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:size-guides": "node scripts/check-size-guides.mjs"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

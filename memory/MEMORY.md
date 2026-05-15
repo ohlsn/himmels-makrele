@@ -26,15 +26,13 @@ Memory types (use as filename prefixes for consistency):
 
 ## Project
 
-<!-- e.g. - [Current status](project_status.md) — what's in flight, blockers, deadlines -->
+- [Current status](project_current_status.md) — Stripe + Printful Architektur, Mockup-Inbox, Pricing ohne Versand, naechste Checks
 
 ## Reference
 
 <!-- e.g. - [Hosting](reference_hosting.md) — Netlify + GitHub deploy workflow -->
 
 ## Decisions
-
-- [Larry-Orchestrator-Setup](decision_larry_orchestration.md) — Plan zur technischen Verankerung der Team-Regel + Git-Sync-Check beim Session-Start (Subagents, Hooks, CLAUDE.md-Restruktur); umzusetzen sobald himmels-makrele live ist
 
 ## Sessions
 

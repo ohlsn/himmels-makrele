@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { shopData } from "../../content/shop";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://himmelsmakrele.nl";
+  const baseUrl = "https://himmels-makrele.com";
 
   return [
     {
@@ -22,6 +23,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/shop`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...shopData.map((product) => ({
+      url: `${baseUrl}/shop/${product.id}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     {
       url: `${baseUrl}/kontakt`,
       lastModified: new Date(),

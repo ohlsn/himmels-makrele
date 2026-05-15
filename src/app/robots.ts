@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://himmelsmakrele.nl/sitemap.xml",
+    sitemap: "https://himmels-makrele.com/sitemap.xml",
   };
 }

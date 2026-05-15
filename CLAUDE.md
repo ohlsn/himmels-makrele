@@ -4,8 +4,10 @@ Ein Next.js 16 App Router Projekt (TypeScript, Tailwind CSS v4, Framer Motion).
 ## Wichtige Befehle
 - `npm run dev` — Entwicklungsserver
 - `npm run build` — Produktionsbuild
-- `node scripts/sync-catalog.mjs` — Synchronisiert `content/shop.ts` aus dem Printful-Store (zieht Brutto-Preise aus `content/pricing.ts`, nicht aus Printfuls retail_price)
+- `node scripts/sync-catalog.mjs` — Synchronisiert `content/shop.ts` aus dem Printful-Store (Produkte, Varianten, Farben, Lagerstatus, Preview-Bilder, Mockup-Inbox; zieht Brutto-Preise aus `content/pricing.ts`, nicht aus Printfuls retail_price)
 - `node scripts/apply-pricing.mjs` — Nach Edit von `content/pricing.ts`: zieht Stripe-Preise nach + aktualisiert `shop.ts`
+- `node scripts/sync-size-guides.mjs` — Ergänzt `content/shop.ts` um Printful-Größentabellen, ohne Preise/Stripe/Bilder anzufassen
+- `npm run check:size-guides` — Blockiert neue Produkte ohne explizite Größenfamilie (`adult`, `kids`, `baby`)
 - `node scripts/pricing-analysis.mjs` — Analyse aktueller Preise vs. Wholesale + Gewinn-Rechnung
 - `node scripts/test-order.mjs` — Sendet eine DRAFT-Bestellung an Printful (kostet nichts, dient zum Testen der API-Anbindung)
 
@@ -26,12 +28,22 @@ Texte aus der Ich-Perspektive der "Himmels Makrele":
 ### 2. Shop — Stripe Checkout + Printful (eigene Kasse)
 **Wichtig:** Printify Pop-Up Store wurde verworfen (nur USD verfügbar). Aktuelle Architektur:
 
-- **Frontend:** [src/components/shop/ProductCard.tsx](src/components/shop/ProductCard.tsx) mit Farb-/Größenauswahl, Out-of-Stock-Anzeige, Lightbox. Klick auf "Kaufen" → POST an `/api/checkout`.
-- **Stripe Checkout** ([src/app/api/checkout/route.ts](src/app/api/checkout/route.ts)): erstellt Session in EUR mit `card`, `iDEAL`, `klarna`. Versand auf DE+NL beschränkt. Hängt `printfulSyncVariantId` an die Session-Metadaten.
+- **Frontend:** [src/components/shop/ProductCard.tsx](src/components/shop/ProductCard.tsx) ist nur noch Katalogkarte ohne Größenwahl/Checkout. Klick führt zur Produktdetailseite `/shop/[productId]`.
+- **Produktdetail:** [src/components/shop/ProductDetail.tsx](src/components/shop/ProductDetail.tsx) enthält Bildstrecke, Farbauswahl, Größenwahl, Größentabelle, Accordions und Checkout-CTA. [content/sizeGuides.ts](content/sizeGuides.ts) pflegt lokale EU-/Altersgrößen als primäre UX-Hilfe.
+- **Stripe Checkout** ([src/app/api/checkout/route.ts](src/app/api/checkout/route.ts)): erstellt Session in EUR mit `card`, `iDEAL`, `klarna`. Versand auf DE+NL beschränkt. Hängt `printfulSyncVariantId` und die vorher erfasste Lieferadresse an die Session-Metadaten.
 - **Webhook** ([src/app/api/webhook/route.ts](src/app/api/webhook/route.ts)): hört auf `checkout.session.completed` → POST an `https://api.printful.com/orders` mit Kundenadresse und `sync_variant_id`. Stripe-Signatur wird verifiziert.
 - **Shop-Daten:** [content/shop.ts](content/shop.ts) ist **auto-generiert** durch `scripts/sync-catalog.mjs`. Nicht von Hand editieren — Änderungen gehen beim nächsten Sync verloren.
-- **Preise:** [content/pricing.ts](content/pricing.ts) ist die Single Source of Truth für Brutto-Endpreise (Cent-Beträge pro `productId`). Bei Preis-Änderung dort editieren + `node scripts/apply-pricing.mjs` ausführen — Stripe-Preise und `shop.ts` werden konsistent nachgezogen. `sync-catalog.mjs` respektiert diese Werte und überschreibt sie nicht.
+- **Preise:** [content/pricing.ts](content/pricing.ts) ist die Single Source of Truth für Brutto-Endpreise (Cent-Beträge pro `productId`). Diese Preise sind inkl. BTW, aber **ohne Versand**. Versand wird beim Checkout live über Printful berechnet und zusätzlich in Stripe angezeigt. Bei Preis-Änderung dort editieren + `node scripts/apply-pricing.mjs` ausführen — Stripe-Preise und `shop.ts` werden konsistent nachgezogen. `sync-catalog.mjs` respektiert diese Werte und überschreibt sie nicht.
 - **Bilder:** Echte Mockups (`pf_mock_*`) und Lifestyle-Fotos (`prod-*`) in [public/assets/shop/](public/assets/shop/).
+
+### 2a. Produkt- und Mockup-Workflow
+- Neue Produkte werden zuerst in Printful angelegt.
+- Printful-Mockups oder ZIP-Exports kommen nach [public/assets/mockups-inbox/](public/assets/mockups-inbox/). Die Inbox ist aktuell der Arbeitsordner für neue T-Shirt-/Hoodie-Designs.
+- Unterordner in der Inbox helfen bei der Zuordnung, z. B. `Wolf`, `Wolf T-Shirt` oder `Wolfhudi`, weil Printful-Dateinamen oft nur den Rohling nennen.
+- `sync-catalog.mjs` entpackt ZIPs automatisch, scannt Unterordner rekursiv, matched Produkt und Farbe, fragt bei Mehrdeutigkeit im Terminal nach, kopiert Bilder nach `public/assets/shop/`, löscht die verarbeiteten Inbox-Dateien und generiert `content/shop.ts`.
+- Der Recovery-Scanner im Skript verknüpft bereits vorhandene `prod-...` Bilder im Shop-Ordner erneut, falls sie beim vorherigen Lauf noch nicht in `shop.ts` standen.
+- Größentabellen: Lokale Alltags-/EU-Größen stehen in [content/sizeGuides.ts](content/sizeGuides.ts). Exakte Printful-Produktmaße sind sekundär und werden per `sync-size-guides.mjs` nach `content/shop.ts` ergänzt.
+- Nach jedem neuen Printful-Produkt muss `npm run check:size-guides` laufen. Neue Produkt-IDs müssen bewusst in `productSizeFamilyOverrides` als `adult`, `kids` oder `baby` eingetragen werden, damit XS/S/M/L/XL nicht falsch interpretiert wird.
 
 ### 3. ENV (`.env.local`, nicht im Repo)
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
@@ -47,6 +59,9 @@ Texte aus der Ich-Perspektive der "Himmels Makrele":
 ## Skript-Verzeichnis
 Alle produktiven Skripte liegen in [scripts/](scripts/):
 - `sync-catalog.mjs` — Quelle der Wahrheit für `content/shop.ts`
+- `apply-pricing.mjs` — Quelle der Wahrheit für Stripe-Preis-Sync aus `content/pricing.ts`
+- `sync-size-guides.mjs` — sicherer Nachzieh-Sync nur für Größentabellen
+- `pricing-analysis.mjs` — Marge prüfen (VAT, Stripe Fee, Wholesale, Versandannahme)
 - `test-order.mjs` — DRAFT-Bestellung für Sanity-Check
 
 ## Anstehende Todos

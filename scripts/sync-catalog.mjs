@@ -29,6 +29,68 @@ function getHex(name) {
   return hexMap[name] || "#cccccc";
 }
 
+async function fetchPrintfulSizeGuide(productId, apiKey) {
+  if (!productId) return undefined;
+
+  try {
+    const response = await fetch(`https://api.printful.com/products/${productId}/sizes?unit=cm`, {
+      headers: { "Authorization": `Bearer ${apiKey}` }
+    });
+
+    if (!response.ok) {
+      console.log(` ⚠️  Keine Größentabelle für Printful-Produkt ${productId} (${response.status})`);
+      return undefined;
+    }
+
+    const data = await response.json();
+    const result = data.result;
+    const tablesRaw = Array.isArray(result?.size_tables) ? result.size_tables : [];
+    const tables = tablesRaw
+      .map((table) => {
+        const measurements = Array.isArray(table.measurements) ? table.measurements : [];
+        const sizes = [
+          ...new Set(
+            measurements.flatMap((measurement) =>
+              Array.isArray(measurement.values)
+                ? measurement.values.map((value) => value.size).filter(Boolean)
+                : []
+            )
+          )
+        ];
+        const rows = measurements.map((measurement) => ({
+          label: measurement.type_label || measurement.type || "Maß",
+          values: sizes.map((size) => {
+            const match = measurement.values?.find((value) => value.size === size);
+            return {
+              size,
+              value: match?.value?.toString() || "",
+            };
+          }),
+        }));
+
+        return {
+          type: table.type,
+          title: table.title || table.type_label,
+          unit: table.unit || "cm",
+          sizes,
+          rows,
+        };
+      })
+      .filter((table) => table.sizes.length > 0 && table.rows.length > 0);
+
+    if (tables.length === 0) return undefined;
+
+    return {
+      source: "Printful",
+      availableSizes: Array.isArray(result?.available_sizes) ? result.available_sizes : [],
+      tables,
+    };
+  } catch (error) {
+    console.log(` ⚠️  Größentabelle konnte nicht geladen werden (${productId}): ${error.message}`);
+    return undefined;
+  }
+}
+
 // ASCII-safe Slug für Dateinamen (Umlaute weg, Leerzeichen → _)
 function asciiSlug(name) {
   return name
@@ -120,6 +182,7 @@ async function run() {
     // Hole Katalog-Produkt Beschreibung & Stock info
     let productDescription = "Original Himmels Makrele Printful Collection";
     let baseProductTitle = "";
+    let sizeGuide;
     const catalogInOutStock = {};
     if (varData.result.sync_variants.length > 0) {
       const baseProductId = varData.result.sync_variants[0].product.product_id;
@@ -147,6 +210,7 @@ async function run() {
               catalogInOutStock[cv.id] = cv.in_stock === false;
             }
           }
+          sizeGuide = await fetchPrintfulSizeGuide(baseProductId, PRINTFUL_KEY);
         } catch (e) {
           console.error("Fehler beim Holen der Beschreibung:", e);
         }
@@ -255,6 +319,7 @@ async function run() {
       sizes: Array.from(sizesSet),
       colors: parsedColors,
       variants: variants,
+      ...(sizeGuide ? { sizeGuide } : {}),
       printifyUrl: "#"
     });
   }
@@ -420,6 +485,30 @@ async function run() {
   isOutOfStock?: boolean;
 }
 
+export interface ProductSizeGuideCell {
+  size: string;
+  value: string;
+}
+
+export interface ProductSizeGuideRow {
+  label: string;
+  values: ProductSizeGuideCell[];
+}
+
+export interface ProductSizeGuideTable {
+  type?: string;
+  title?: string;
+  unit?: string;
+  sizes: string[];
+  rows: ProductSizeGuideRow[];
+}
+
+export interface ProductSizeGuide {
+  source: "Printful";
+  availableSizes: string[];
+  tables: ProductSizeGuideTable[];
+}
+
 export interface ProductColor {
   name: string;
   hex: string;
@@ -439,6 +528,7 @@ export interface Product {
   sizes: string[];
   colors: ProductColor[];
   variants: ProductVariant[];
+  sizeGuide?: ProductSizeGuide;
 }
 
 // ⚠️ AUTO-SYNCED: Diese Datei wurde automatisch vom sync-catalog Skript generiert!

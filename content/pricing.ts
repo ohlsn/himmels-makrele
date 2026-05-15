@@ -1,10 +1,11 @@
 /**
- * 💶 Verkaufspreise (Brutto, inkl. 21% BTW, inkl. Versand)
+ * 💶 Verkaufspreise (Brutto, inkl. 21% BTW, ohne Versand)
  *
  * Single source of truth für die Endpreise im Shop.
  *
  * - Werte als Cent-Beträge (z.B. 2490 = € 24,90)
- * - Strategie: Wholesale + EU-Versand + Stripe-Gebühr + Marge → Brutto
+ * - Strategie: Wholesale + Stripe-Gebühr + Marge → Brutto
+ * - Versand wird im Checkout separat über Printful berechnet und angezeigt
  * - Beim Ändern → `node scripts/apply-pricing.mjs` ausführen,
  *   damit Stripe-Preise nachgezogen werden + shop.ts den neuen
  *   stripePriceId bekommt.

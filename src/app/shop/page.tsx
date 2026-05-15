@@ -6,7 +6,7 @@ import { shopData } from "../../../content/shop";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Trage die Kunst der Himmels Makrele. T-Shirts, Lunchboxen und Prints direkt aus unserem Pop-Up Store.",
+  description: "Trage die Kunst der Himmels Makrele. T-Shirts, Hoodies und Prints mit sicherem Stripe Checkout.",
 };
 
 export default function ShopPage() {
@@ -18,7 +18,7 @@ export default function ShopPage() {
           
           <div className="max-w-2xl mx-auto text-center mb-16">
             <p className="text-xl text-ocean/80 leading-relaxed">
-              Willkommen im offiziellen Himmels Makrele Shop. Klicke auf ein Produkt, um zu unserem externen Printify Pop-Up Store weitergeleitet zu werden. Dort kannst du sicher und einfach deine Bestellung abschließen.
+              Willkommen im offiziellen Himmels Makrele Shop. Such dir in Ruhe ein Produkt aus; Farbe, Größe, Größentabelle und Checkout warten auf der Detailseite. Alle Preise verstehen sich ohne Versand.
             </p>
           </div>
 
@@ -27,8 +27,8 @@ export default function ShopPage() {
           
           <div className="mt-16 text-center max-w-xl mx-auto">
             <p className="text-sm text-ocean/50">
-              Der Himmels Makrele Shop wird als Pop-Up Store über Printify betrieben. 
-              Produktion, Versand und rechtliche Abwicklung erfolgen durch Printify und deren Partnerdruckereien.
+              Die Versandkosten werden im Checkout anhand deiner Adresse
+              berechnet. Produktion und Versand erfolgen nach Bestellung.
             </p>
           </div>
         </div>

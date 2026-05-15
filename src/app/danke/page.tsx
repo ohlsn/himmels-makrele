@@ -202,7 +202,7 @@ export default async function DankePage({
                   <strong>{customerEmail || "deine E-Mail"}</strong>
                 </li>
                 <li>
-                  Sobald die Druckerei losliegt, schickt Printful eine
+                  Sobald die Druckerei loslegt, kommt eine
                   Versand-Mail mit Tracking-Link
                 </li>
                 <li>
