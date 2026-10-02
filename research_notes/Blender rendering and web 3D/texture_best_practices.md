@@ -228,7 +228,7 @@ The big avoidable mistakes are wrong color spaces on data maps, wrong normal-map
 - Bake expensive procedural + Bevel node setups to textures for assets reused across many renders (a product turntable, for instance). Bake once, render many.
 
 ### Gaps
-- No retrieved source gave measured VRAM numbers per resolution (for example, an 8K RGBA 8-bit texture is about 256 MB uncompressed, as I recall, but I did not find a source, so I did not include it as a finding) or the exact UI path and default of the Simplify Texture Limit setting.
+- No retrieved source gave measured VRAM numbers per texture resolution, or the exact UI path and default of the Simplify Texture Limit setting.
 - No data on whether 8-bit PNG vs 16-bit PNG/EXR matters for displacement and roughness in current Cycles.
 - The exact 5.2 texture-cache enable path (Render Properties location, defaults) was not retrieved.
 - Denoising, light-path, sampling and adaptive-sampling settings related to texture noise (fireflies from glossy/clear coat) were not researched.
